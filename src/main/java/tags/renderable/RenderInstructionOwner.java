@@ -1,6 +1,6 @@
-package tags.render;
+package tags.renderable;
 
-import render.RenderInstruction;
+import rendering.RenderInstruction;
 
 import java.util.ArrayDeque;
 

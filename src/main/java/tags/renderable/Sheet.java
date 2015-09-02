@@ -1,4 +1,4 @@
-package tags.render;
+package tags.renderable;
 
 import org.jfree.chart.plot.Plot;
 import tags.Tag;

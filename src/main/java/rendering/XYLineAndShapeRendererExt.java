@@ -1,4 +1,4 @@
-package render;
+package rendering;
 
 import org.jfree.chart.renderer.xy.XYLineAndShapeRenderer;
 

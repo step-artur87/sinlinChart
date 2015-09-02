@@ -1,4 +1,4 @@
-package tags.render;
+package tags.renderable;
 
 import tags.Tag;
 import tags.TagException;

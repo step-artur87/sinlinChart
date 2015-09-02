@@ -1,10 +1,10 @@
-package tags.render;
+package tags.renderable;
 
 import org.jfree.chart.axis.NumberAxis;
 import org.jfree.chart.plot.Plot;
 import org.jfree.chart.plot.XYPlot;
-import render.RenderInstruction;
-import render.XYLineAndShapeRendererExt;
+import rendering.RenderInstruction;
+import rendering.XYLineAndShapeRendererExt;
 import tags.DatasetFactory;
 import tags.Tag;
 import tags.TagException;

@@ -1,4 +1,4 @@
-package render;
+package rendering;
 
 /**
  * Created with IntelliJ IDEA.
@@ -6,11 +6,11 @@ package render;
  * Date: 8/30/15
  * Time: 9:31 PM
  */
-public class D1RI<T> implements RenderInstruction {
+public class D2RI<T> implements RenderInstruction {
     private String name;
-    private T[] data;
+    private T[][] data;
 
-    public D1RI(String name, T[] data) {
+    public D2RI(String name, T[][] data) {
         this.data = data;
         this.name = name;
     }
@@ -23,11 +23,11 @@ public class D1RI<T> implements RenderInstruction {
         this.name = name;
     }
 
-    public T[] getData() {
+    public T[][] getData() {
         return data;
     }
 
-    public void setData(T[] data) {
+    public void setData(T[][] data) {
         this.data = data;
     }
 }

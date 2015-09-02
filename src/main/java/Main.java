@@ -2,7 +2,7 @@ import org.jfree.chart.plot.Plot;
 import org.jfree.ui.ApplicationFrame;
 import org.jfree.ui.RefineryUtilities;
 import tags.TagDeque;
-import tags.render.Sheet;
+import tags.renderable.Sheet;
 import xml.ChartSourceHandler;
 import xml.DataSourceHandler;
 import xml.SaxParsing;

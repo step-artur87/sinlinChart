@@ -2,10 +2,10 @@ package tags;
 
 import org.xml.sax.Attributes;
 import tags.func.*;
-import tags.render.Chart;
-import tags.render.Element;
-import tags.render.Prop;
-import tags.render.Sheet;
+import tags.renderable.Chart;
+import tags.renderable.Element;
+import tags.renderable.Prop;
+import tags.renderable.Sheet;
 
 /**
  * Created with IntelliJ IDEA.

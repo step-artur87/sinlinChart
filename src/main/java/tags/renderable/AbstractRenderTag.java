@@ -1,7 +1,7 @@
-package tags.render;
+package tags.renderable;
 
 import org.xml.sax.Attributes;
-import render.RenderInstruction;
+import rendering.RenderInstruction;
 import tags.AbstractTag;
 
 import java.util.ArrayDeque;

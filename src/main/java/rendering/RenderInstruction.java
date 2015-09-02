@@ -1,4 +1,4 @@
-package render;
+package rendering;
 
 /**
  * Created with IntelliJ IDEA.
