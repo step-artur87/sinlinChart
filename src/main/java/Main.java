@@ -14,7 +14,8 @@ import java.awt.geom.Rectangle2D;
  */
 public class Main {
     public static void main(String[] args) {
-        SaxParsing.parse("1.xml");
+        SaxParsing.parse(new DataSourceHandler(), "data.xml");
+        SaxParsing.parse(new ChartSourceHandler(), "1.xml");
 
         MyDemo myDemo = new MyDemo();
         TagDeque tagDeque = TagDeque.getInstance();

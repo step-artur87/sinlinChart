@@ -13,11 +13,10 @@ import java.io.IOException;
  * Time: 5:51 PM
  */
 public class SaxParsing {
-    public static void parse(String filename) {
+    public static void parse(DefaultHandler defaultHandler,
+                             String filename) {
         SAXParserFactory factory = SAXParserFactory.newInstance();
         SAXParser saxParser;
-        DefaultHandler defaultHandler
-                = new ChartSourceHandler();
         try {
             saxParser = factory.newSAXParser();
             saxParser.parse(filename, defaultHandler);
