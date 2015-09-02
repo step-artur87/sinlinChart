@@ -6,11 +6,11 @@ package rendering;
  * Date: 8/30/15
  * Time: 9:31 PM
  */
-public class D3RI<T> implements RenderInstruction {
+public class D3RI implements RenderInstruction {
     private String name;
-    private T[][][] data;
+    private double[][][] data;
 
-    public D3RI(String name, T[][][] data) {
+    public D3RI(String name, double[][][] data) {
         this.data = data;
         this.name = name;
     }
@@ -23,11 +23,11 @@ public class D3RI<T> implements RenderInstruction {
         this.name = name;
     }
 
-    public T[][][] getData() {
+    public double[][][] getData() {
         return data;
     }
 
-    public void setData(T[][][] data) {
+    public void setData(double[][][] data) {
         this.data = data;
     }
 }
