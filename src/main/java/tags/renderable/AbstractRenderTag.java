@@ -32,20 +32,6 @@ public abstract class AbstractRenderTag extends AbstractTag
 
     @Override
     public void setAttributes(Attributes attributes) {
-/*
         super.setAttributes(attributes);
-                */
-/*temporary*//*
-
-        if ((attributes != null)
-                && (attributes.getValue(TYPE) != null)
-                && (new TestData()).getTestD2RIs().containsKey(
-                attributes.getValue(TYPE))) {
-            this.renderInstruction
-                    = (new TestData()).getTestD2RIs()
-                    .get(attributes.getValue(TYPE));
-        }
-*/
     }
-
 }
