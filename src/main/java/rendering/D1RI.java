@@ -10,11 +10,15 @@ import java.util.ArrayList;
  */
 public class D1RI implements RenderInstruction {
     private String name;
+    private String legend;
     private ArrayList<Double> data;
 
-    public D1RI(String name, ArrayList<Double> data) {
+    public D1RI(String name,
+                String legend,
+                ArrayList<Double> data) {
         this.data = data;
         this.name = name;
+        this.legend = legend;
     }
 
     public String getName() {
@@ -31,5 +35,13 @@ public class D1RI implements RenderInstruction {
 
     public void setData(ArrayList<Double> data) {
         this.data = data;
+    }
+
+    public String getLegend() {
+        return legend;
+    }
+
+    public void setLegend(String legend) {
+        this.legend = legend;
     }
 }
