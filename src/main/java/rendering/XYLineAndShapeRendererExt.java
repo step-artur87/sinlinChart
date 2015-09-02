@@ -27,12 +27,6 @@ public class XYLineAndShapeRendererExt
         sortOwned();
     }
 
-    private void sortOwned() {
-        owned.forEach((ri) -> {
-            rimap.put(ri.getName(), ri);
-        });
-    }
-
     @Override
     public Shape getItemShape(int row, int column) {//bottleneck
         D1RI widthRI;
@@ -69,6 +63,7 @@ public class XYLineAndShapeRendererExt
         return super.getItemFillPaint(row, column);
     }
 
+    @Override
     public Paint getItemPaint(int row, int column) {
         if (rimap.containsKey(
                 RenderInstruction.COLOR)) {
@@ -77,8 +72,22 @@ public class XYLineAndShapeRendererExt
         return super.getItemPaint(row, column);
     }
 
-    /*for the same behavior of getItemFillPaint
-    and getItemPaint*/
+    private void sortOwned() {
+        owned.forEach((ri) -> {
+            rimap.put(ri.getName(), ri);
+        });
+    }
+
+    /**
+     * Returns a Color of these row ans column,
+     * defined by RenderInstruction with name
+     * RenderInstruction.COLOR.
+     * Used for the same behavior of getItemFillPaint
+     * and getItemPaint
+     * @param row  the row (or series) index.
+     * @param column  the column (or category) index.
+     * @return Color
+     */
     private Paint getPaint(int row, int column) {
         D1RI paintRI;
         if (rimap.containsKey(

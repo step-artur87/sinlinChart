@@ -13,6 +13,16 @@ import java.util.ArrayDeque;
 public abstract class AbstractTag implements Tag {
     private Attributes attributes;
 
+    @Override
+    public Attributes getAttributes() {
+        return attributes;
+    }
+
+    @Override
+    public void setAttributes(Attributes attributes) {
+        this.attributes = attributes;
+    }
+
     protected boolean tryAddToVar(Tag tag,
                                   Class aClass,
                                   ArrayDeque to)
@@ -39,15 +49,5 @@ public abstract class AbstractTag implements Tag {
             return true;
         }
         return false;
-    }
-
-    @Override
-    public Attributes getAttributes() {
-        return attributes;
-    }
-
-    @Override
-    public void setAttributes(Attributes attributes) {
-        this.attributes = attributes;
     }
 }

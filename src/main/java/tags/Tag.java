@@ -20,6 +20,13 @@ public interface Tag {
     public static final String SHEET = "sheet";
     public static String TYPE = "type";
 
+    /**
+     * Add specified tag to this tag if this tag can have
+     * this class as child and throws TagException otherwise.
+     * @param tag that becomes a child of this if can
+     * @throws TagException if tag can not be child of this
+     * or this have one tag of same class and need no second.
+     */
     public void addChildTag(Tag tag) throws TagException;
 
     public Attributes getAttributes();

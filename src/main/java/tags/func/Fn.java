@@ -49,28 +49,6 @@ public class Fn extends AbstractTag implements Tag {
         this.parentTag = parentTag;
     }
 
-    public Map<String, ArrayList<Double>> lessDimension(
-            Map<String, ArrayList<Double>> data,
-            Map<String, Double> filtr) {
-        int size = -1;
-        Stream sizeStream;
-        Map<String, Integer> sizeMap = new HashMap<>();
-
-        //check for all data ArrayLists has same size
-        data.forEach((s, a) -> {
-            sizeMap.put(s, a.size());
-        });
-        sizeStream = sizeMap.values().stream();
-        if (!sizeStream.min(Comparator.naturalOrder())
-                .equals(sizeStream.max(Comparator.naturalOrder()))) {
-            return null;//todo exception
-        }
-
-        size = (int) sizeStream.min(Comparator.naturalOrder()).get();
-        //?filtr.forEach();numbers of records
-        return new HashMap<>();
-    }
-
     public Map<String, ArrayList<Double>> getArgs() {
         Map<String, ArrayList<Double>> result = new HashMap<>();
         argsSet.forEach((a)
@@ -92,7 +70,7 @@ public class Fn extends AbstractTag implements Tag {
     private static ArrayList<Double> filter(ArrayList<Double> places,
                                             ArrayList<Double> values,
                                             double value) {
-        ArrayList<Double> result = new ArrayList<Double>();
+        ArrayList<Double> result = new ArrayList<>();
         for (int i = 0; i < places.size(); i++) {
             if (places.get(i) == value) {
                 result.add(values.get(i));

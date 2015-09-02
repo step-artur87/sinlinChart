@@ -7,6 +7,7 @@ import java.util.ArrayList;
  * User: art
  * Date: 8/30/15
  * Time: 9:31 PM
+ * Two-dimensioned RenderInstruction
  */
 public class D2RI implements RenderInstruction {
     private String name;
@@ -18,7 +19,7 @@ public class D2RI implements RenderInstruction {
                 ArrayList<ArrayList<Double>> data) {
         this.data = data;
         this.name = name;
-        this.setLegend(legend);
+        this.legend = legend;
 
     }
 
@@ -34,15 +35,7 @@ public class D2RI implements RenderInstruction {
         return data;
     }
 
-    public void setData(ArrayList<ArrayList<Double>> data) {
-        this.data = data;
-    }
-
     public String getLegend() {
         return legend;
-    }
-
-    public void setLegend(String legend) {
-        this.legend = legend;
     }
 }
