@@ -86,6 +86,7 @@ public class XYLineAndShapeRendererExt
             paintRI = (D1RI) rimap.get(
                     RenderInstruction.COLOR);
             return UtColor.double2color(
+                    paintRI.getLegend(),
                     paintRI.getData().get(column).intValue());
         }
         return Color.black;//unreachable without bugs
