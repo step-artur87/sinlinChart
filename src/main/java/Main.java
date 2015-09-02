@@ -2,6 +2,9 @@ import org.jfree.chart.plot.Plot;
 import org.jfree.ui.RefineryUtilities;
 import tags.TagDeque;
 import tags.render.Sheet;
+import xml.ChartSourceHandler;
+import xml.DataSourceHandler;
+import xml.SaxParsing;
 
 import java.awt.*;
 import java.awt.geom.Rectangle2D;
