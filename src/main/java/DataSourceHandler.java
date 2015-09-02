@@ -18,9 +18,9 @@ public class DataSourceHandler extends DefaultHandler {
     public static final String ROW = "row";
     public static final String ID = "id";
 
-    private Map<String, ArrayList<Double>> data = new HashMap<>();
     private ArrayList<Double> currentColumn;
     String string;
+    private Map<String,ArrayList<Double>> dataMap;
 
     @Override
     public void startElement(String uri,
@@ -32,19 +32,20 @@ public class DataSourceHandler extends DefaultHandler {
             case DATA:
                 break;
             case COLUMN:
-                data.put(attributes.getValue(ID),//todo if to "id"
+                dataMap = Data.getInstance().getDataMap();
+                dataMap.put(attributes.getValue(ID),//todo if to "id"
                         new ArrayList<>());
-                currentColumn = data.get(attributes.getValue(ID));
+                currentColumn = dataMap.get(attributes.getValue(ID));
                 break;
             case ROW:
                 break;
         }
     }
 
+    @Override
     public void endElement(String uri,
                            String localName,
-                           String qName,
-                           Attributes attributes)
+                           String qName)
             throws SAXException {
         switch (qName) {
             case DATA:
@@ -63,9 +64,5 @@ public class DataSourceHandler extends DefaultHandler {
                            int length)
             throws SAXException {
         string = new String(ch, start, length);
-    }
-
-    public Map<String, ArrayList<Double>> getData() {
-        return data;
     }
 }
