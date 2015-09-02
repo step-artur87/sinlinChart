@@ -48,7 +48,9 @@ public class Chart extends AbstractRenderTag implements Tag {
     @Override
     public void appendRI(ArrayDeque<RenderInstruction> rial) {
         owned.clear();
-        rio.forEach((a) -> a.forEach((t) -> ((AbstractRenderTag) t).appendRI(owned)));
+        rio.forEach((a)
+                -> a.forEach((t)
+                -> ((AbstractRenderTag) t).appendRI(owned)));
         if (renderInstruction != null) {
             rial.add(this.renderInstruction);
         }

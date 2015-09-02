@@ -23,7 +23,7 @@ public class TestData {
         Double y[] = {1., 1., 2., 0., 3.};
         Double r1[] = {10., 20., 30., 40., 50.};
         Double r2[] = {50., 40., 30., 20., 10.};
-        Double r3[] = {10., 20., 30., 40., 50.};
+        Double r3[] = {50., 100., 150., 200., 250.};
         addToMap("c", c);
         addToMap("a", x);
         addToMap("r", y);
@@ -38,13 +38,18 @@ public class TestData {
                 new Double[testDataMap.get("r1").size()];
         Double[] heights
                 = new Double[testDataMap.get("r2").size()];
+        Double[] colors
+                = new Double[testDataMap.get("r2").size()];
         testDataMap.get("r1").toArray(widths);
         testDataMap.get("r2").toArray(heights);
+        testDataMap.get("r3").toArray(colors);
         Map<String, D1RI> result = new HashMap<>();
         result.put("width",
                 new D1RI("width", widths));
         result.put("height",
                 new D1RI("height", heights));
+        result.put("color",
+                new D1RI("color", colors));
 
         return result;
     }
