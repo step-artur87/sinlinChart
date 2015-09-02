@@ -1,5 +1,7 @@
 package rendering;
 
+import java.util.ArrayList;
+
 /**
  * Created with IntelliJ IDEA.
  * User: art
@@ -8,9 +10,9 @@ package rendering;
  */
 public class D1RI implements RenderInstruction {
     private String name;
-    private double[] data;
+    private ArrayList<Double> data;
 
-    public D1RI(String name, double[] data) {
+    public D1RI(String name, ArrayList<Double> data) {
         this.data = data;
         this.name = name;
     }
@@ -23,11 +25,11 @@ public class D1RI implements RenderInstruction {
         this.name = name;
     }
 
-    public double[] getData() {
+    public ArrayList<Double> getData() {
         return data;
     }
 
-    public void setData(double[] data) {
+    public void setData(ArrayList<Double> data) {
         this.data = data;
     }
 }
