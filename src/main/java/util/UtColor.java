@@ -14,6 +14,7 @@ public class UtColor {
     public static Color double2color (String legend,
                                       double d){
         switch (legend){//todo if overflow
+            //todo "rgb", "hsb" from 3 Nums (m.b "rg"...)
             case RenderInstruction.R:
                 return new Color((int) d*256*256);
             case RenderInstruction.G:

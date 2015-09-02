@@ -19,7 +19,8 @@ import java.util.ArrayList;
 public class Prop extends AbstractRenderTag implements Tag {
     private ArrayDeque<Fn> fnSet = new ArrayDeque<>();//fixme kostyl , todo scale
 
-    private void setRenderInstruction() {
+    private void setRenderInstruction()//todo move to RIO
+    {
         ArrayList<Double> doubleArrayList;
         String value = getAttributes().getValue(
                 Tag.TYPE);
