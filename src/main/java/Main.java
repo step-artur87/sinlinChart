@@ -1,4 +1,5 @@
 import org.jfree.chart.plot.Plot;
+import org.jfree.ui.ApplicationFrame;
 import org.jfree.ui.RefineryUtilities;
 import tags.TagDeque;
 import tags.render.Sheet;
@@ -6,6 +7,7 @@ import xml.ChartSourceHandler;
 import xml.DataSourceHandler;
 import xml.SaxParsing;
 
+import javax.swing.*;
 import java.awt.*;
 import java.awt.geom.Rectangle2D;
 
@@ -35,5 +37,15 @@ public class Main {
                 new Rectangle2D.Double(100, 100, 600, 600),
                 null, null, null);
 
+    }
+
+    private static class MyDemo extends ApplicationFrame {
+
+        public MyDemo() {
+            super("tittle");
+            JPanel jPanel = new JPanel();
+            jPanel.setPreferredSize(new Dimension(1200, 800));
+            setContentPane(jPanel);
+        }
     }
 }
