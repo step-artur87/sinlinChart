@@ -11,6 +11,14 @@ import java.awt.*;
  * Time: 12:17 AM
  */
 public class UtColor {
+    /**
+     * Creaes a color from double value using specified legend.
+     * @param legend define, how depends Color
+     *               from double value.
+     * @param d value, from which color created.
+     * @return Color.
+     */
+
     public static Color double2color (String legend,
                                       double d){
         switch (legend){//todo if overflow

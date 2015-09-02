@@ -7,6 +7,7 @@ import java.util.ArrayList;
  * User: art
  * Date: 8/30/15
  * Time: 9:31 PM
+ * One-dimensioned RenderInstruction
  */
 public class D1RI implements RenderInstruction {
     private String name;
@@ -33,15 +34,8 @@ public class D1RI implements RenderInstruction {
         return data;
     }
 
-    public void setData(ArrayList<Double> data) {
-        this.data = data;
-    }
-
     public String getLegend() {
         return legend;
     }
 
-    public void setLegend(String legend) {
-        this.legend = legend;
-    }
 }

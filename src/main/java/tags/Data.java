@@ -18,7 +18,7 @@ public class Data {
         return data;
     }
 
-    private Data(){};
+    private Data(){}
 
     public Map<String, ArrayList<Double>> getDataMap() {
         return dataMap;
