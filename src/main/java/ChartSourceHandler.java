@@ -14,7 +14,7 @@ import java.util.ArrayDeque;
  * Date: 8/26/15
  * Time: 8:17 PM
  */
-public class DefaultHandlerExt extends DefaultHandler {
+public class ChartSourceHandler extends DefaultHandler {
     private TagDeque tagDeque = TagDeque.getInstance();//todo <>
     private FnDeque fnDeque = FnDeque.getInstance();//todo <>
 

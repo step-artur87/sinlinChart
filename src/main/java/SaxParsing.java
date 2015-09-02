@@ -17,7 +17,7 @@ public class SaxParsing {
         SAXParserFactory factory = SAXParserFactory.newInstance();
         SAXParser saxParser;
         DefaultHandler defaultHandler
-                = new DefaultHandlerExt();
+                = new ChartSourceHandler();
         try {
             saxParser = factory.newSAXParser();
             saxParser.parse(filename, defaultHandler);
