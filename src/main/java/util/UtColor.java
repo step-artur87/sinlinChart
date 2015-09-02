@@ -10,6 +10,6 @@ import java.awt.*;
  */
 public class UtColor {
     public static Color double2color (double d){
-        return Color.cyan;
+        return new Color((int) d);
     }
 }

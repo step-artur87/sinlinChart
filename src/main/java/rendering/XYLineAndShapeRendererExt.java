@@ -35,8 +35,8 @@ public class XYLineAndShapeRendererExt
 
     @Override
     public Shape getItemShape(int row, int column) {//bottleneck
-        D1RI<Double> widthRI;
-        D1RI<Double> heightRI;
+        D1RI widthRI;
+        D1RI heightRI;
         double width = super.getItemShape(row, column)
                 .getBounds().width;
         double height = super.getItemShape(row, column)
@@ -44,15 +44,15 @@ public class XYLineAndShapeRendererExt
 
         if (rimap.containsKey(
                 RenderInstruction.WIDTH)) {
-            widthRI = (D1RI<Double>) rimap.get(
+            widthRI = (D1RI) rimap.get(
                     RenderInstruction.WIDTH);
-            width = widthRI.getData()[column];
+            width = widthRI.getData().get(column);
         }
         if (rimap.containsKey(
                 RenderInstruction.HEIGHT)) {
-            heightRI = (D1RI<Double>) rimap.get(
+            heightRI = (D1RI) rimap.get(
                     RenderInstruction.HEIGHT);
-            height = heightRI.getData()[column];
+            height = heightRI.getData().get(column);
         }
         return new Ellipse2D.Double(-width / 2,
                 -height / 2,
@@ -80,13 +80,13 @@ public class XYLineAndShapeRendererExt
     /*for the same behavior of getItemFillPaint
     and getItemPaint*/
     private Paint getPaint(int row, int column) {
-        D1RI<Double> paintRI;
+        D1RI paintRI;
         if (rimap.containsKey(
                 RenderInstruction.COLOR)) {
-            paintRI = (D1RI<Double>) rimap.get(
+            paintRI = (D1RI) rimap.get(
                     RenderInstruction.COLOR);
             return UtColor.double2color(
-                    paintRI.getData()[column].intValue());
+                    paintRI.getData().get(column).intValue());
         }
         return Color.black;//unreachable without bugs
     }

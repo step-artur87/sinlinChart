@@ -1,10 +1,14 @@
 package tags.renderable;
 
+import rendering.D1RI;
+import rendering.RenderInstruction;
+import tags.Data;
 import tags.Tag;
 import tags.TagException;
 import tags.func.Fn;
 
 import java.util.ArrayDeque;
+import java.util.ArrayList;
 
 /**
  * Created with IntelliJ IDEA.
@@ -14,6 +18,28 @@ import java.util.ArrayDeque;
  */
 public class Prop extends AbstractRenderTag implements Tag {
     private ArrayDeque<Fn> fnSet = new ArrayDeque<>();//fixme kostyl , todo scale
+
+    private void setRenderInstruction() {
+        ArrayList<Double> doubleArrayList;
+        String value = getAttributes().getValue(
+                Tag.TYPE);
+        if ((value.equals(RenderInstruction.COLOR))) {
+            doubleArrayList =
+                    Data.getInstance().getDataMap().get(
+                            value);
+            renderInstruction = new D1RI(
+                    value,
+                    getAttributes().getValue(
+                            RenderInstruction.LEGEND),
+                    doubleArrayList);
+        }
+    }
+
+    @Override
+    public void appendRI(ArrayDeque<RenderInstruction> rial) {
+        setRenderInstruction();
+        super.appendRI(rial);
+    }
 
     @Override
     public void addChildTag(Tag tag) throws TagException {
