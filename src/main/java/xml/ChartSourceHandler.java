@@ -53,14 +53,6 @@ public class ChartSourceHandler extends DefaultHandler {
         tagDeque.push(tag);//todo more
     }
 
-    private void clearFnDeque() {//fixme
-        while (!fnDeque.isEmpty()
-                && !tagDeque.contains(
-                ((Fn) fnDeque.peek()).getParentTag())) {
-            fnDeque.removeFirst();
-        }
-    }
-
     @Override
     public void endElement(String uri,
                            String localName,
@@ -96,6 +88,14 @@ public class ChartSourceHandler extends DefaultHandler {
             throws SAXException {
         if (tagDeque.peek().getClass().equals(Num.class)) {      //fixme
             ((Num) tagDeque.peek()).setText(new String(ch, start, length));
+        }
+    }
+
+    private void clearFnDeque() {//fixme
+        while (!fnDeque.isEmpty()
+                && !tagDeque.contains(
+                ((Fn) fnDeque.peek()).getParentTag())) {
+            fnDeque.removeFirst();
         }
     }
 }

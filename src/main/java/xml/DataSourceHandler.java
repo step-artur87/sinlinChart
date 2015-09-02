@@ -21,8 +21,7 @@ public class DataSourceHandler extends DefaultHandler {
     public static final String ID = "id";
 
     private ArrayList<Double> currentColumn;
-    String string;
-    private Map<String,ArrayList<Double>> dataMap;
+    private String string;
 
     @Override
     public void startElement(String uri,
@@ -34,7 +33,7 @@ public class DataSourceHandler extends DefaultHandler {
             case DATA:
                 break;
             case COLUMN:
-                dataMap = Data.getInstance().getDataMap();
+                Map<String, ArrayList<Double>> dataMap = Data.getInstance().getDataMap();
                 dataMap.put(attributes.getValue(ID),//todo if to "id"
                         new ArrayList<>());
                 currentColumn = dataMap.get(attributes.getValue(ID));

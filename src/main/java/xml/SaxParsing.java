@@ -4,7 +4,6 @@ import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
 import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 import java.io.IOException;
 
@@ -17,11 +16,9 @@ import java.io.IOException;
 public class SaxParsing {
     public static void parse(DefaultHandler defaultHandler,
                              String filename) {
-        SAXParserFactory factory = SAXParserFactory.newInstance();
-        SAXParser saxParser;
         try {
-            saxParser = factory.newSAXParser();
-            saxParser.parse(filename, defaultHandler);
+            SAXParserFactory.newInstance().
+                    newSAXParser().parse(filename, defaultHandler);
         } catch (ParserConfigurationException | SAXException | IOException e) {
             e.printStackTrace();
         }
