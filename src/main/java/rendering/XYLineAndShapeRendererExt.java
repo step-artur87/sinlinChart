@@ -1,6 +1,7 @@
 package rendering;
 
 import org.jfree.chart.renderer.xy.XYLineAndShapeRenderer;
+import util.UtColor;
 
 import java.awt.*;
 import java.awt.geom.Ellipse2D;
@@ -84,7 +85,7 @@ public class XYLineAndShapeRendererExt
                 RenderInstruction.COLOR)) {
             paintRI = (D1RI<Double>) rimap.get(
                     RenderInstruction.COLOR);
-            return new Color(
+            return UtColor.double2color(
                     paintRI.getData()[column].intValue());
         }
         return Color.black;//unreachable without bugs
