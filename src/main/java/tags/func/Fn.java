@@ -88,4 +88,16 @@ public class Fn extends AbstractTag implements Tag {
         }));
         return result;
     }
+
+    private static ArrayList<Double> filter(ArrayList<Double> places,
+                                            ArrayList<Double> values,
+                                            double value) {
+        ArrayList<Double> result = new ArrayList<Double>();
+        for (int i = 0; i < places.size(); i++) {
+            if (places.get(i) == value){
+                result.add(values.get(i));
+            }
+        }
+        return result;
+    }
 }
