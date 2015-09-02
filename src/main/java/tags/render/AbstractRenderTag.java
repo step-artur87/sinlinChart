@@ -42,6 +42,7 @@ public abstract class AbstractRenderTag extends AbstractTag
             this.renderInstruction
                     = (new TestData()).getTestD2RIs()
                     .get(attributes.getValue(TYPE));
+            System.out.println(attributes.getValue(TYPE));
         }
     }
 

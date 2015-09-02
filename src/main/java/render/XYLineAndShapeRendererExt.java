@@ -41,14 +41,52 @@ public class XYLineAndShapeRendererExt
         double height = super.getItemShape(row, column)
                 .getBounds().height;
 
-        if (rimap.containsKey(/*"points_width"*/RenderInstruction.WIDTH)) {
-            widthRI = (D1RI<Double>) rimap.get(/*"points_width"*/ RenderInstruction.WIDTH);
+        if (rimap.containsKey(
+                RenderInstruction.WIDTH)) {
+            widthRI = (D1RI<Double>) rimap.get(
+                    RenderInstruction.WIDTH);
             width = widthRI.getData()[column];
         }
-        if (rimap.containsKey(/*"points_height"*/ RenderInstruction.HEIGHT)) {
-            heightRI = (D1RI<Double>) rimap.get(/*"points_height"*/RenderInstruction.HEIGHT);
+        if (rimap.containsKey(
+                RenderInstruction.HEIGHT)) {
+            heightRI = (D1RI<Double>) rimap.get(
+                    RenderInstruction.HEIGHT);
             height = heightRI.getData()[column];
         }
-        return new Ellipse2D.Double(-width / 2, -height / 2, width, height);
+        return new Ellipse2D.Double(-width / 2,
+                -height / 2,
+                width,
+                height);
+    }
+
+    @Override
+    public Paint getItemFillPaint(int row, int column) {
+        if (rimap.containsKey(
+                RenderInstruction.COLOR)) {
+            return getPaint(row, column);
+        }
+        return super.getItemFillPaint(row, column);
+    }
+
+    public Paint getItemPaint(int row, int column) {
+        if (rimap.containsKey(
+                RenderInstruction.COLOR)) {
+            return getPaint(row, column);
+        }
+        return super.getItemPaint(row, column);
+    }
+
+    /*for the same behavior of getItemFillPaint
+    and getItemPaint*/
+    private Paint getPaint(int row, int column) {
+        D1RI<Double> paintRI;
+        if (rimap.containsKey(
+                RenderInstruction.COLOR)) {
+            paintRI = (D1RI<Double>) rimap.get(
+                    RenderInstruction.COLOR);
+            return new Color(
+                    paintRI.getData()[column].intValue());
+        }
+        return Color.black;//unreachable without bugs
     }
 }

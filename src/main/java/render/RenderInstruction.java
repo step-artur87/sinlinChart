@@ -9,6 +9,7 @@ package render;
 public interface RenderInstruction {
     public static final String HEIGHT = "height";
     public static final String WIDTH = "width";
+    public static final String COLOR = "color";
 
     public String getName();
 }
