@@ -1,8 +1,8 @@
 package tags.func;
 
 import tags.AbstractTag;
+import tags.Data;
 import tags.Tag;
-import tags.TestData;
 
 import java.util.ArrayList;
 
@@ -23,7 +23,7 @@ public class Num extends AbstractTag implements Tag {//todo fields
 
     public void setText(String text) {
         this.text = text;
-        setValues((new TestData()).testDataMap.get(text));
+        setValues(Data.getInstance().getDataMap().get(text));
     }
 
     public String getText() {

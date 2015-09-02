@@ -94,7 +94,7 @@ public class Fn extends AbstractTag implements Tag {
                                             double value) {
         ArrayList<Double> result = new ArrayList<Double>();
         for (int i = 0; i < places.size(); i++) {
-            if (places.get(i) == value){
+            if (places.get(i) == value) {
                 result.add(values.get(i));
             }
         }

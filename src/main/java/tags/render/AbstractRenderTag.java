@@ -3,7 +3,6 @@ package tags.render;
 import org.xml.sax.Attributes;
 import render.RenderInstruction;
 import tags.AbstractTag;
-import tags.TestData;
 
 import java.util.ArrayDeque;
 
@@ -33,8 +32,11 @@ public abstract class AbstractRenderTag extends AbstractTag
 
     @Override
     public void setAttributes(Attributes attributes) {
+/*
         super.setAttributes(attributes);
-                /*temporary*/
+                */
+/*temporary*//*
+
         if ((attributes != null)
                 && (attributes.getValue(TYPE) != null)
                 && (new TestData()).getTestD2RIs().containsKey(
@@ -43,6 +45,7 @@ public abstract class AbstractRenderTag extends AbstractTag
                     = (new TestData()).getTestD2RIs()
                     .get(attributes.getValue(TYPE));
         }
+*/
     }
 
 }
