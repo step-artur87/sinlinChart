@@ -21,7 +21,12 @@ public class Fn extends AbstractTag implements Tag {
     private ArrayDeque<Args> argsSet = new ArrayDeque<>();//fixme kostyl
     private ArrayDeque<Res> resSet = new ArrayDeque<>();//fixme kostyl
 
+    /**
+     * Creates XYDataset from all data of this
+     * @return XYDataset
+     */
     public XYDataset createXYDataset() {
+        //todo other Datasets
         DefaultXYDataset xyDataset
                 = new DefaultXYDataset();
         Set xKey = getArgs().keySet();
