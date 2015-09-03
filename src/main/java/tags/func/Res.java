@@ -13,6 +13,7 @@ import java.util.ArrayDeque;
  * Time: 8:05 PM
  */
 public class Res extends AbstractTag implements Tag {
+    //todo no enum const, args, res
     private ArrayDeque<Num> nums = new ArrayDeque<>();
 
     @Override
