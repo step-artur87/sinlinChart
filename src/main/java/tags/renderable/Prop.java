@@ -19,8 +19,7 @@ import java.util.ArrayList;
 public class Prop extends AbstractRenderTag implements Tag {
     private ArrayDeque<Fn> fnSet = new ArrayDeque<>();//fixme kostyl , todo scale
 
-    private void setRenderInstruction()//todo move to RIO
-    {
+    protected void setRenderInstruction(){
         ArrayList<Double> doubleArrayList;
         String value = getAttributes().getValue(
                 Tag.TYPE);
@@ -34,12 +33,6 @@ public class Prop extends AbstractRenderTag implements Tag {
                             RenderInstruction.LEGEND),
                     doubleArrayList);
         }
-    }
-
-    @Override
-    public void appendRI(ArrayDeque<RenderInstruction> rial) {
-        setRenderInstruction();
-        super.appendRI(rial);
     }
 
     @Override

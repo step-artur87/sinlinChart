@@ -22,11 +22,15 @@ public abstract class AbstractRenderTag extends AbstractTag
     @Override
     public void appendRI(
             ArrayDeque<RenderInstruction> rial) {
+        setRenderInstruction();
         if (renderInstruction != null) {
             rial.add(this.renderInstruction);
         }
         rio.forEach((a)
                 -> a.forEach((t)
                 -> ((AbstractRenderTag) t).appendRI(rial)));
+    }
+
+    protected void setRenderInstruction(){
     }
 }
