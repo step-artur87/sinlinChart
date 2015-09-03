@@ -18,7 +18,6 @@ public class Fn extends AbstractTag implements Tag {
     private ArrayDeque<Args> argsSet = new ArrayDeque<>();//fixme kostyl
     private ArrayDeque<Res> resSet = new ArrayDeque<>();//fixme kostyl
 
-    private Fn parentFn = null;
     private Tag parentTag = null;
 
     @Override
@@ -31,14 +30,6 @@ public class Fn extends AbstractTag implements Tag {
                 + tag.getClass()
                 + " to "
                 + this.getClass() + ".");
-    }
-
-    public Fn getParentFn() {
-        return parentFn;
-    }
-
-    public void setParentFn(Fn parentFn) {
-        this.parentFn = parentFn;
     }
 
     public Tag getParentTag() {

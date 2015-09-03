@@ -18,7 +18,6 @@ import java.util.ArrayDeque;
  */
 public class ChartSourceHandler extends DefaultHandler {
     private TagDeque tagDeque = TagDeque.getInstance();//todo <>
-    private FnDeque fnDeque = FnDeque.getInstance();//todo <>
 
     @Override
     public void startElement(String uri,
@@ -36,17 +35,6 @@ public class ChartSourceHandler extends DefaultHandler {
             } catch (TagException e) {
                 e.printStackTrace();
             }
-        }
-
-        //Fn.setParent
-        if (tag.getClass().equals(Fn.class)) {
-            ((Fn) tag).setParentTag((Tag) tagDeque.peek());
-            ((Fn) tag).setParentFn((Fn) fnDeque.peek());
-
-            clearFnDeque();
-
-
-            fnDeque.push(tag);
         }
 
         //push
@@ -88,14 +76,6 @@ public class ChartSourceHandler extends DefaultHandler {
             throws SAXException {
         if (tagDeque.peek().getClass().equals(Num.class)) {      //fixme
             ((Num) tagDeque.peek()).setText(new String(ch, start, length));
-        }
-    }
-
-    private void clearFnDeque() {//fixme
-        while (!fnDeque.isEmpty()
-                && !tagDeque.contains(
-                ((Fn) fnDeque.peek()).getParentTag())) {
-            fnDeque.removeFirst();
         }
     }
 }
