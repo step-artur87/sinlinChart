@@ -21,15 +21,13 @@ public class Fn extends AbstractTag implements Tag {
     private ArrayDeque<Args> argsSet = new ArrayDeque<>();//fixme kostyl
     private ArrayDeque<Res> resSet = new ArrayDeque<>();//fixme kostyl
 
-    private Tag parentTag = null;
-
     public XYDataset createXYDataset() {
         DefaultXYDataset xyDataset
                 = new DefaultXYDataset();
         Set xKey = getArgs().keySet();
         Set yKey = getRes().keySet();
 
-
+        //todo "xy" from data
         xyDataset.addSeries("xy", UtArray.arraysTo2D(
                 getArgs().get(xKey.toArray()[0]),
                 getRes().get(yKey.toArray()[0])));
@@ -49,15 +47,7 @@ public class Fn extends AbstractTag implements Tag {
                 + this.getClass() + ".");
     }
 
-    public Tag getParentTag() {
-        return parentTag;
-    }
-
-    public void setParentTag(Tag parentTag) {
-        this.parentTag = parentTag;
-    }
-
-    public Map<String, ArrayList<Double>> getArgs() {
+    private Map<String, ArrayList<Double>> getArgs() {
         Map<String, ArrayList<Double>> result = new HashMap<>();
         argsSet.forEach((a)
                 -> a.getNums().forEach((n)
@@ -67,7 +57,7 @@ public class Fn extends AbstractTag implements Tag {
         return result;
     }
 
-    public Map<String, ArrayList<Double>> getRes() {
+    private Map<String, ArrayList<Double>> getRes() {
         Map<String, ArrayList<Double>> result = new HashMap<>();
         resSet.forEach((a) -> a.getNums().forEach((n) -> {
             result.put(n.getText(), n.getValues());
