@@ -19,7 +19,6 @@ public abstract class AbstractRenderTag extends AbstractTag
             <? extends AbstractRenderTag>> rio
             = new ArrayDeque<>();
 
-
     @Override
     public void appendRI(
             ArrayDeque<RenderInstruction> rial) {
