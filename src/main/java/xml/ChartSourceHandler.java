@@ -50,6 +50,7 @@ public class ChartSourceHandler extends DefaultHandler {
         if (tagDeque.size() == 1) {//todo if root again
             tagDeque.setRootTag((Tag) tagDeque.peek());
 
+            //when end root tag collect all RI
             ((Sheet) tagDeque.getRootTag()).appendRI(
                     new ArrayDeque<>());
         }
