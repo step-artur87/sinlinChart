@@ -5,7 +5,6 @@ import org.jfree.chart.plot.Plot;
 import org.jfree.chart.plot.XYPlot;
 import rendering.RenderInstruction;
 import rendering.XYLineAndShapeRendererExt;
-import tags.DatasetFactory;
 import tags.Tag;
 import tags.TagException;
 import tags.func.Fn;
@@ -59,7 +58,7 @@ public class Chart extends AbstractRenderTag implements Tag {
     }
 
     public Plot createPlot() {
-        return new XYPlot(DatasetFactory.createXYDataset(
+        return new XYPlot(Fn.createXYDataset(
                 fnSet.peek().getArgs(),
                 fnSet.peek().getRes()),
                 new NumberAxis("x"),

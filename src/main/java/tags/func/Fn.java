@@ -1,8 +1,11 @@
 package tags.func;
 
+import org.jfree.data.xy.DefaultXYDataset;
+import org.jfree.data.xy.XYDataset;
 import tags.AbstractTag;
 import tags.Tag;
 import tags.TagException;
+import util.UtArray;
 
 import java.util.*;
 import java.util.stream.Stream;
@@ -19,6 +22,22 @@ public class Fn extends AbstractTag implements Tag {
     private ArrayDeque<Res> resSet = new ArrayDeque<>();//fixme kostyl
 
     private Tag parentTag = null;
+
+    public static XYDataset createXYDataset(
+            Map<String, ArrayList<Double>> x,
+            Map<String, ArrayList<Double>> y) {
+        DefaultXYDataset xyDataset
+                = new DefaultXYDataset();
+        Set xKey = x.keySet();
+        Set yKey = y.keySet();
+
+
+        xyDataset.addSeries("xy", UtArray.arraysTo2D(
+                x.get(xKey.toArray()[0]),
+                y.get(yKey.toArray()[0])));
+
+        return xyDataset;
+    }
 
     @Override
     public void addChildTag(Tag tag) throws TagException {
