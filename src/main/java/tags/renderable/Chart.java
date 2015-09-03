@@ -58,9 +58,8 @@ public class Chart extends AbstractRenderTag implements Tag {
     }
 
     public Plot createPlot() {
-        return new XYPlot(Fn.createXYDataset(
-                fnSet.peek().getArgs(),
-                fnSet.peek().getRes()),
+        return new XYPlot(
+                fnSet.peek().createXYDataset(),
                 new NumberAxis("x"),
                 new NumberAxis("y"),
                 new XYLineAndShapeRendererExt(owned));

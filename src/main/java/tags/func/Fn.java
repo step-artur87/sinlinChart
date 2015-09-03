@@ -23,18 +23,16 @@ public class Fn extends AbstractTag implements Tag {
 
     private Tag parentTag = null;
 
-    public static XYDataset createXYDataset(
-            Map<String, ArrayList<Double>> x,
-            Map<String, ArrayList<Double>> y) {
+    public XYDataset createXYDataset() {
         DefaultXYDataset xyDataset
                 = new DefaultXYDataset();
-        Set xKey = x.keySet();
-        Set yKey = y.keySet();
+        Set xKey = getArgs().keySet();
+        Set yKey = getRes().keySet();
 
 
         xyDataset.addSeries("xy", UtArray.arraysTo2D(
-                x.get(xKey.toArray()[0]),
-                y.get(yKey.toArray()[0])));
+                getArgs().get(xKey.toArray()[0]),
+                getRes().get(yKey.toArray()[0])));
 
         return xyDataset;
     }
