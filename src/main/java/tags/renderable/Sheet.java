@@ -17,9 +17,10 @@ import java.util.ArrayList;
 public class Sheet extends AbstractRenderTag implements Tag {//todo m.b props
     private ArrayDeque<Fn> fnSet = new ArrayDeque<>();//fixme kostyl
     private ArrayDeque<Chart> charts = new ArrayDeque<>();
-    //todo initialise for other classes
 
     {
+        /*add to this.rio all ArrayDeques,
+        that can contain RenderInstructionOwners*/
         rio.add(charts);
     }
 

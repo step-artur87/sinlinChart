@@ -16,6 +16,8 @@ public class Element extends AbstractRenderTag implements Tag {
     private ArrayDeque<Prop> props = new ArrayDeque<>();
 
     {
+        /*add to this.rio all ArrayDeques,
+        that can contain RenderInstructionOwners*/
         rio.add(charts);
         rio.add(props);
     }

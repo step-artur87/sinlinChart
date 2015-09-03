@@ -25,6 +25,8 @@ public class Chart extends AbstractRenderTag implements Tag {
     private ArrayDeque<RenderInstruction> owned = new ArrayDeque<>();
 
     {
+        /*add to this.rio all ArrayDeques,
+        that can contain RenderInstructionOwners*/
         rio.add(elements);
         rio.add(props);
     }
