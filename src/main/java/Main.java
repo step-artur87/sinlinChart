@@ -22,30 +22,25 @@ public class Main {
         SaxParsing.parse(new DataSourceHandler(), "data.xml");
         SaxParsing.parse(new ChartSourceHandler(), "1.xml");
 
-        MyDemo myDemo = new MyDemo();
+        /*create frame*/
+        ApplicationFrame applicationFrame = new ApplicationFrame("tittle");
+        JPanel jPanel = new JPanel();
+        jPanel.setPreferredSize(new Dimension(1200, 800));
+        applicationFrame.setContentPane(jPanel);
+
         TagDeque tagDeque = TagDeque.getInstance();
         Sheet sheet = (Sheet) tagDeque.getRootTag();
         Plot plot = sheet.getPlots().get(0);
 
          /*show chart*/
-        myDemo.pack();
-        RefineryUtilities.centerFrameOnScreen(myDemo);
-        myDemo.setVisible(true);
+        applicationFrame.pack();
+        RefineryUtilities.centerFrameOnScreen(applicationFrame);
+        applicationFrame.setVisible(true);
 
 
-        plot.draw((Graphics2D) myDemo.getGraphics(),
+        plot.draw((Graphics2D) applicationFrame.getGraphics(),
                 new Rectangle2D.Double(100, 100, 600, 600),
                 null, null, null);
 
-    }
-
-    private static class MyDemo extends ApplicationFrame {
-
-        public MyDemo() {
-            super("tittle");
-            JPanel jPanel = new JPanel();
-            jPanel.setPreferredSize(new Dimension(1200, 800));
-            setContentPane(jPanel);
-        }
     }
 }
