@@ -52,6 +52,16 @@ public class Fn extends AbstractTag implements Tag {
                 + this.getClass() + ".");
     }
 
+    private Map<String, ArrayList<Double>> getConst() {
+        Map<String, ArrayList<Double>> result = new HashMap<>();
+        constSet.forEach((a)
+                -> a.getNums().forEach((n)
+                -> {
+            result.put(n.getText(), n.getValues());
+        }));
+        return result;
+    }
+
     private Map<String, ArrayList<Double>> getArgs() {
         Map<String, ArrayList<Double>> result = new HashMap<>();
         argsSet.forEach((a)
