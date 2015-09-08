@@ -5,6 +5,8 @@ import tags.Tag;
 import tags.TagException;
 import tags.func.Fn;
 
+import javax.xml.stream.XMLStreamException;
+import javax.xml.stream.XMLStreamWriter;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 
@@ -42,5 +44,17 @@ public class Sheet extends AbstractRenderTag implements Tag {
             plotArrayList.add(c.createPlot());
         });
         return plotArrayList;
+    }
+
+    @Override
+    public void writeXML(XMLStreamWriter xmlStreamWriter){
+        try {
+            xmlStreamWriter.writeStartElement(Tag.SHEET);
+            charts.forEach(c -> c.writeXML(xmlStreamWriter));
+            fnSet.forEach(c -> c.writeXML(xmlStreamWriter));
+            xmlStreamWriter.writeEndElement();
+        } catch (XMLStreamException e) {
+            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+        }
     }
 }

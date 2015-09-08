@@ -2,6 +2,8 @@ package tags;
 
 import org.xml.sax.Attributes;
 
+import javax.xml.stream.XMLStreamException;
+import javax.xml.stream.XMLStreamWriter;
 import java.util.ArrayDeque;
 
 /**
@@ -49,5 +51,10 @@ public abstract class AbstractTag implements Tag {
             return true;
         }
         return false;
+    }
+
+    @Override
+    public void writeXML(XMLStreamWriter xmlStreamWriter){
+        //todo delete
     }
 }

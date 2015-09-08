@@ -5,6 +5,7 @@ import tags.TagDeque;
 import tags.renderable.Sheet;
 import xml.ChartSourceHandler;
 import xml.DataSourceHandler;
+import xml.Output;
 import xml.SaxParsing;
 
 import javax.swing.*;
@@ -31,6 +32,8 @@ public class Main {
         TagDeque tagDeque = TagDeque.getInstance();
         Sheet sheet = (Sheet) tagDeque.getRootTag();
         Plot plot = sheet.getPlots().get(0);
+
+        Output.printXML(sheet);
 
          /*show chart*/
         applicationFrame.pack();

@@ -8,7 +8,7 @@ import org.xml.sax.Attributes;
  * Date: 8/26/15
  * Time: 6:55 PM
  */
-public interface Tag {
+public interface Tag extends XmlOut{
     public static final String ARGS = "args";
     public static final String CHART = "chart";
     public static final String CONST = "const";
