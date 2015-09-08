@@ -26,7 +26,6 @@ public class Fn extends AbstractTag implements Tag {
      *
      * @return XYDataset
      */
-    //todo if args one,  res many
     public XYDataset createXYDataset() {
         //OR many with id OR one without, no that and that
         //todo other Datasets
@@ -39,9 +38,11 @@ public class Fn extends AbstractTag implements Tag {
 
         //no ids
         if (xIds.isEmpty() && yIds.isEmpty()) {
-            xyDataset.addSeries(DEFAULT_SERIES_NAME, UtArray.arraysTo2D(
-                    getArgs().get(xKey.toArray()[0]),
-                    getRes().get(yKey.toArray()[0])));
+            yKey.forEach((k) -> {
+                xyDataset.addSeries(k, UtArray.arraysTo2D(
+                        getArgs().get(xKey.toArray()[0]),
+                        getRes().get(k)));
+            });
         } else
         //ids same in args and res
         {

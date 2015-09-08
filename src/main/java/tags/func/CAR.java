@@ -5,7 +5,9 @@ import tags.Tag;
 import tags.TagException;
 import xml.DataSourceHandler;
 
-import java.util.*;
+import java.util.ArrayDeque;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created with IntelliJ IDEA.
@@ -30,12 +32,14 @@ public class CAR extends AbstractTag {
     @Override
     public void addChildTag(Tag tag) throws TagException {
         String value;
-        if (tag.getAttributes() != null) {
+        if ((tag.getAttributes() != null)
+                && (tag.getAttributes().getValue(
+                DataSourceHandler.ID) != null)) {
             value = tag.getAttributes().getValue(
                     DataSourceHandler.ID);
             if (!getIds().containsKey(value)) {
-                if (tryAddToArray(tag, Num.class, getNums())){
-                    getIds().put(value, ((Num)tag));
+                if (tryAddToArray(tag, Num.class, getNums())) {
+                    getIds().put(value, ((Num) tag));
                     return;
                 }
             } else {
