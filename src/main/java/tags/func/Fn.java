@@ -8,7 +8,6 @@ import tags.TagException;
 import util.UtArray;
 
 import java.util.*;
-import java.util.stream.Stream;
 
 /**
  * Created with IntelliJ IDEA.
@@ -17,26 +16,49 @@ import java.util.stream.Stream;
  * Time: 8:05 PM
  */
 public class Fn extends AbstractTag implements Tag {
+    public static final String DEFAULT_SERIES_NAME = "xy";
     private ArrayDeque<Const> constSet = new ArrayDeque<>();//fixme kostyl
     private ArrayDeque<Args> argsSet = new ArrayDeque<>();//fixme kostyl
     private ArrayDeque<Res> resSet = new ArrayDeque<>();//fixme kostyl
 
     /**
      * Creates XYDataset from all data of this
+     *
      * @return XYDataset
      */
+    //todo if args one,  res many
     public XYDataset createXYDataset() {
+        //OR many with id OR one without, no that and that
         //todo other Datasets
         DefaultXYDataset xyDataset
                 = new DefaultXYDataset();
-        Set xKey = getArgs().keySet();
-        Set yKey = getRes().keySet();
+        Set<String> xKey = getArgs().keySet();
+        Set<String> yKey = getRes().keySet();
+        Map<String, Num> xIds = argsSet.peek().getIds();
+        Map<String, Num> yIds = resSet.peek().getIds();
 
-        //todo "xy" from data
-        xyDataset.addSeries("xy", UtArray.arraysTo2D(
-                getArgs().get(xKey.toArray()[0]),
-                getRes().get(yKey.toArray()[0])));
-
+        //no ids
+        if (xIds.isEmpty() && yIds.isEmpty()) {
+            xyDataset.addSeries(DEFAULT_SERIES_NAME, UtArray.arraysTo2D(
+                    getArgs().get(xKey.toArray()[0]),
+                    getRes().get(yKey.toArray()[0])));
+        } else
+        //ids same in args and res
+        {
+            if (xIds.keySet().containsAll(yIds.keySet())
+                    && yIds.keySet().containsAll(xIds.keySet())) {
+                xIds.keySet().forEach((s)
+                        -> xyDataset.addSeries(s, UtArray.arraysTo2D(
+                        argsSet.peek().getIds().get(s).getValues(),
+                        resSet.peek().getIds().get(s).getValues())));
+            } else {
+                try {
+                    throw new TagException("args.ids!=res.ids");
+                } catch (TagException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
         return xyDataset;
     }
 

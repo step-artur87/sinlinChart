@@ -5,9 +5,7 @@ import tags.Tag;
 import tags.TagException;
 import xml.DataSourceHandler;
 
-import java.util.ArrayDeque;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Created with IntelliJ IDEA.
@@ -18,7 +16,7 @@ import java.util.Set;
 public class CAR extends AbstractTag {
     private ArrayDeque<Num> nums = new ArrayDeque<>();
     //todo choose type of collection for all
-    private Set<String> ids = new HashSet<>();
+    private Map<String, Num> ids = new HashMap<>();
 
     /**
      * Add specified tag to this tag if this tag can have
@@ -35,9 +33,9 @@ public class CAR extends AbstractTag {
         if (tag.getAttributes() != null) {
             value = tag.getAttributes().getValue(
                     DataSourceHandler.ID);
-            if (!getIds().contains(value)) {
+            if (!getIds().containsKey(value)) {
                 if (tryAddToArray(tag, Num.class, getNums())){
-                    getIds().add(value);
+                    getIds().put(value, ((Num)tag));
                     return;
                 }
             } else {
@@ -58,7 +56,7 @@ public class CAR extends AbstractTag {
         return nums;
     }
 
-    public Set<String> getIds() {
+    public Map<String, Num> getIds() {
         return ids;
     }
 }
