@@ -12,21 +12,5 @@ import java.util.ArrayDeque;
  * Date: 8/26/15
  * Time: 8:05 PM
  */
-public class Args extends AbstractTag implements Tag {
-    private ArrayDeque<Num> nums = new ArrayDeque<>();
-
-    @Override
-    public void addChildTag(Tag tag) throws TagException {
-        if (tryAddToArray(tag, Num.class, getNums()))
-            return;
-
-        throw new TagException("Can not add "
-                + tag.getClass()
-                + " to "
-                + this.getClass() + ".");
-    }
-
-    public ArrayDeque<Num> getNums() {
-        return nums;
-    }
+public class Args extends CAR implements Tag {
 }
