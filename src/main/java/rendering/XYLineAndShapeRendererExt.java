@@ -28,7 +28,7 @@ public class XYLineAndShapeRendererExt
     }
 
     @Override
-    public Shape getItemShape(int row, int column) {//bottleneck
+    public Shape getItemShape(int row, int column) {
         D1RI widthRI;
         D1RI heightRI;
         double width = super.getItemShape(row, column)

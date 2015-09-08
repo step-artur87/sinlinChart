@@ -3,6 +3,7 @@ package tags.func;
 import tags.AbstractTag;
 import tags.Data;
 import tags.Tag;
+import tags.TagException;
 
 import java.util.ArrayList;
 
@@ -12,13 +13,13 @@ import java.util.ArrayList;
  * Date: 8/26/15
  * Time: 8:05 PM
  */
-public class Num extends AbstractTag implements Tag {//todo fields
+public class Num extends AbstractTag implements Tag {
     private String text;
     private ArrayList<Double> values;
 
     @Override
-    public void addChildTag(Tag tag) {
-        //todo exception
+    public void addChildTag(Tag tag) throws TagException {
+        throw new TagException("Num can not have children.");
     }
 
     public void setText(String text) {

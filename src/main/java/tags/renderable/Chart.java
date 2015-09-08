@@ -20,7 +20,7 @@ import java.util.ArrayDeque;
 public class Chart extends AbstractRenderTag implements Tag {
     private ArrayDeque<Fn> fnSet = new ArrayDeque<>();//fixme kostyl
     private ArrayDeque<Element> elements = new ArrayDeque<>();
-    private ArrayDeque<Prop> props = new ArrayDeque<>();//todo for other classes
+    private ArrayDeque<Prop> props = new ArrayDeque<>();
     private ArrayDeque<RenderInstruction> owned = new ArrayDeque<>();
 
     {

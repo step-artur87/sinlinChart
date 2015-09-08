@@ -17,7 +17,7 @@ import java.util.ArrayList;
  * Time: 8:05 PM
  */
 public class Prop extends AbstractRenderTag implements Tag {
-    private ArrayDeque<Fn> fnSet = new ArrayDeque<>();//fixme kostyl , todo scale
+    private ArrayDeque<Fn> fnSet = new ArrayDeque<>();//fixme kostyl
 
     protected void setRenderInstruction() {
         ArrayList<Double> doubleArrayList;

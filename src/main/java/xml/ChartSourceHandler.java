@@ -17,7 +17,7 @@ import java.util.ArrayDeque;
  * Time: 8:17 PM
  */
 public class ChartSourceHandler extends DefaultHandler {
-    private TagDeque tagDeque = TagDeque.getInstance();//todo <>
+    private TagDeque tagDeque = TagDeque.getInstance();
 
     @Override
     public void startElement(String uri,
@@ -38,7 +38,7 @@ public class ChartSourceHandler extends DefaultHandler {
         }
 
         //push
-        tagDeque.push(tag);//todo more
+        tagDeque.push(tag);
     }
 
     @Override
@@ -46,7 +46,7 @@ public class ChartSourceHandler extends DefaultHandler {
                            String localName,
                            String qName)
             throws SAXException {
-        Tag tag = TagBuilder.create(qName, null);//todo class
+        Tag tag = TagBuilder.create(qName, null);
         if (tagDeque.size() == 1) {//todo if root again
             tagDeque.setRootTag((Tag) tagDeque.peek());
 
@@ -75,7 +75,7 @@ public class ChartSourceHandler extends DefaultHandler {
                            int start,
                            int length)
             throws SAXException {
-        if (tagDeque.peek().getClass().equals(Num.class)) {      //fixme
+        if (tagDeque.peek().getClass().equals(Num.class)) {
             ((Num) tagDeque.peek()).setText(new String(ch, start, length));
         }
     }

@@ -14,7 +14,7 @@ import java.util.ArrayList;
  * Date: 8/26/15
  * Time: 8:05 PM
  */
-public class Sheet extends AbstractRenderTag implements Tag {//todo m.b props
+public class Sheet extends AbstractRenderTag implements Tag {
     private ArrayDeque<Fn> fnSet = new ArrayDeque<>();//fixme kostyl
     private ArrayDeque<Chart> charts = new ArrayDeque<>();
 

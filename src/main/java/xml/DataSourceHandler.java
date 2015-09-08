@@ -34,7 +34,7 @@ public class DataSourceHandler extends DefaultHandler {
                 break;
             case COLUMN:
                 Map<String, ArrayList<Double>> dataMap = Data.getInstance().getDataMap();
-                dataMap.put(attributes.getValue(ID),//todo if to "id"
+                dataMap.put(attributes.getValue(ID),
                         new ArrayList<>());
                 currentColumn = dataMap.get(attributes.getValue(ID));
                 break;
