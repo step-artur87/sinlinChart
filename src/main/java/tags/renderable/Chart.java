@@ -9,6 +9,8 @@ import tags.Tag;
 import tags.TagException;
 import tags.func.Fn;
 
+import javax.xml.stream.XMLStreamException;
+import javax.xml.stream.XMLStreamWriter;
 import java.util.ArrayDeque;
 
 /**
@@ -63,5 +65,19 @@ public class Chart extends AbstractRenderTag implements Tag {
                 new NumberAxis("x"),
                 new NumberAxis("y"),
                 new XYLineAndShapeRendererExt(owned));
+    }
+
+    @Override
+    public void writeXML(XMLStreamWriter xmlStreamWriter){
+        try {
+            xmlStreamWriter.writeStartElement(
+                    this.getClass().getSimpleName());
+            fnSet.forEach(c -> c.writeXML(xmlStreamWriter));
+            elements.forEach(c -> c.writeXML(xmlStreamWriter));
+            props.forEach(c -> c.writeXML(xmlStreamWriter));
+            xmlStreamWriter.writeEndElement();
+        } catch (XMLStreamException e) {
+            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+        }
     }
 }

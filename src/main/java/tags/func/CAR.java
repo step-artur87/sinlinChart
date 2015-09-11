@@ -5,6 +5,8 @@ import tags.Tag;
 import tags.TagException;
 import xml.DataSourceHandler;
 
+import javax.xml.stream.XMLStreamException;
+import javax.xml.stream.XMLStreamWriter;
 import java.util.ArrayDeque;
 import java.util.HashMap;
 import java.util.Map;
@@ -62,5 +64,17 @@ public class CAR extends AbstractTag {
 
     public Map<String, Num> getIds() {
         return ids;
+    }
+
+    @Override
+    public void writeXML(XMLStreamWriter xmlStreamWriter) {
+        try {
+            xmlStreamWriter.writeStartElement(
+                    this.getClass().getSimpleName());
+            nums.forEach(c -> c.writeXML(xmlStreamWriter));
+            xmlStreamWriter.writeEndElement();
+        } catch (XMLStreamException e) {
+            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+        }
     }
 }

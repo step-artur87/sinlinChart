@@ -49,7 +49,8 @@ public class Sheet extends AbstractRenderTag implements Tag {
     @Override
     public void writeXML(XMLStreamWriter xmlStreamWriter){
         try {
-            xmlStreamWriter.writeStartElement(Tag.SHEET);
+            xmlStreamWriter.writeStartElement(
+                    this.getClass().getSimpleName());
             charts.forEach(c -> c.writeXML(xmlStreamWriter));
             fnSet.forEach(c -> c.writeXML(xmlStreamWriter));
             xmlStreamWriter.writeEndElement();

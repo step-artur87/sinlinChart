@@ -7,6 +7,8 @@ import tags.Tag;
 import tags.TagException;
 import util.UtArray;
 
+import javax.xml.stream.XMLStreamException;
+import javax.xml.stream.XMLStreamWriter;
 import java.util.*;
 
 /**
@@ -113,5 +115,19 @@ public class Fn extends AbstractTag implements Tag {
             }
         }
         return result;
+    }
+
+    @Override
+    public void writeXML(XMLStreamWriter xmlStreamWriter) {
+        try {
+            xmlStreamWriter.writeStartElement(
+                    this.getClass().getSimpleName());
+            constSet.forEach(c -> c.writeXML(xmlStreamWriter));
+            argsSet.forEach(c -> c.writeXML(xmlStreamWriter));
+            resSet.forEach(c -> c.writeXML(xmlStreamWriter));
+            xmlStreamWriter.writeEndElement();
+        } catch (XMLStreamException e) {
+            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+        }
     }
 }

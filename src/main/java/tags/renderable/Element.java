@@ -3,6 +3,8 @@ package tags.renderable;
 import tags.Tag;
 import tags.TagException;
 
+import javax.xml.stream.XMLStreamException;
+import javax.xml.stream.XMLStreamWriter;
 import java.util.ArrayDeque;
 
 /**
@@ -34,5 +36,18 @@ public class Element extends AbstractRenderTag implements Tag {
                 + tag.getClass()
                 + " to "
                 + this.getClass() + ".");
+    }
+
+    @Override
+    public void writeXML(XMLStreamWriter xmlStreamWriter) {
+        try {
+            xmlStreamWriter.writeStartElement(
+                    this.getClass().getSimpleName());
+            charts.forEach(c -> c.writeXML(xmlStreamWriter));
+            props.forEach(c -> c.writeXML(xmlStreamWriter));
+            xmlStreamWriter.writeEndElement();
+        } catch (XMLStreamException e) {
+            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+        }
     }
 }

@@ -7,6 +7,8 @@ import tags.Tag;
 import tags.TagException;
 import tags.func.Fn;
 
+import javax.xml.stream.XMLStreamException;
+import javax.xml.stream.XMLStreamWriter;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 
@@ -46,5 +48,17 @@ public class Prop extends AbstractRenderTag implements Tag {
                 + tag.getClass()
                 + " to "
                 + this.getClass() + ".");
+    }
+
+    @Override
+    public void writeXML(XMLStreamWriter xmlStreamWriter) {
+        try {
+            xmlStreamWriter.writeStartElement(
+                    this.getClass().getSimpleName());
+            fnSet.forEach(c -> c.writeXML(xmlStreamWriter));
+            xmlStreamWriter.writeEndElement();
+        } catch (XMLStreamException e) {
+            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+        }
     }
 }

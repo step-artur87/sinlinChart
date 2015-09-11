@@ -5,6 +5,8 @@ import tags.Data;
 import tags.Tag;
 import tags.TagException;
 
+import javax.xml.stream.XMLStreamException;
+import javax.xml.stream.XMLStreamWriter;
 import java.util.ArrayList;
 
 /**
@@ -37,5 +39,19 @@ public class Num extends AbstractTag implements Tag {
 
     public void setValues(ArrayList<Double> values) {
         this.values = values;
+    }
+
+    public void writeXML(XMLStreamWriter xmlStreamWriter) {
+        try {
+            xmlStreamWriter.writeStartElement(
+                    this.getClass().getSimpleName());
+            xmlStreamWriter.writeCharacters(
+                    getText().toCharArray(),
+                    0,
+                    getText().length());
+            xmlStreamWriter.writeEndElement();
+        } catch (XMLStreamException e) {
+            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+        }
     }
 }
