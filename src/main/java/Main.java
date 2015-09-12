@@ -1,5 +1,8 @@
+import org.jfree.chart.JFreeChart;
 import org.jfree.chart.plot.Plot;
+import org.jfree.chart.util.ExportUtils;
 import org.jfree.ui.ApplicationFrame;
+import org.jfree.ui.Drawable;
 import org.jfree.ui.RefineryUtilities;
 import tags.TagDeque;
 import tags.renderable.Sheet;
@@ -11,6 +14,7 @@ import xml.SaxParsing;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.geom.Rectangle2D;
+import java.io.File;
 
 /**
  * Created with IntelliJ IDEA.
@@ -20,6 +24,7 @@ import java.awt.geom.Rectangle2D;
  */
 public class Main {
     public static void main(String[] args) {
+        Graphics2D graphics;
         SaxParsing.parse(new DataSourceHandler(), "data.xml");
         SaxParsing.parse(new ChartSourceHandler(), "1.xml");
 
@@ -40,10 +45,17 @@ public class Main {
         RefineryUtilities.centerFrameOnScreen(applicationFrame);
         applicationFrame.setVisible(true);
 
+        graphics = (Graphics2D) applicationFrame.getGraphics();
 
-        plot.draw((Graphics2D) applicationFrame.getGraphics(),
+        plot.draw(graphics,
                 new Rectangle2D.Double(100, 100, 600, 600),
                 null, null, null);
 
+/*
+        JFreeChart jFreeChart = new JFreeChart(plot);
+        jFreeChart.draw(graphics,
+                new Rectangle2D.Double(100, 100, 600, 600));
+        ExportUtils.writeAsSVG(jFreeChart, 1000, 1000, new File("export.svg"));
+*/
     }
 }
