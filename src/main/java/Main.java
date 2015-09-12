@@ -1,8 +1,5 @@
-import org.jfree.chart.JFreeChart;
 import org.jfree.chart.plot.Plot;
-import org.jfree.chart.util.ExportUtils;
 import org.jfree.ui.ApplicationFrame;
-import org.jfree.ui.Drawable;
 import org.jfree.ui.RefineryUtilities;
 import tags.TagDeque;
 import tags.renderable.Sheet;
@@ -14,7 +11,7 @@ import xml.SaxParsing;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.geom.Rectangle2D;
-import java.io.File;
+import java.util.ArrayList;
 
 /**
  * Created with IntelliJ IDEA.
@@ -36,9 +33,8 @@ public class Main {
 
         TagDeque tagDeque = TagDeque.getInstance();
         Sheet sheet = (Sheet) tagDeque.getRootTag();
-        Plot plot = sheet.getPlots().get(0);
 
-        Output.printXML(sheet);
+        //Output.printXML(sheet);
 
          /*show chart*/
         applicationFrame.pack();
@@ -46,10 +42,19 @@ public class Main {
         applicationFrame.setVisible(true);
 
         graphics = (Graphics2D) applicationFrame.getGraphics();
+        ArrayList<Plot> plots = sheet.getPlots();
 
-        plot.draw(graphics,
-                new Rectangle2D.Double(100, 100, 600, 600),
-                null, null, null);
+        for (int i = 0; i < plots.size(); i++) {
+            plots.get(i).setBackgroundAlpha(0);
+            plots.get(i).draw(graphics, new Rectangle2D.Double(
+                    i * 100,
+                    i * 100,
+                    600,
+                    600),
+                    null, null, null);
+        }
+
+
 
 /*
         JFreeChart jFreeChart = new JFreeChart(plot);
@@ -57,5 +62,5 @@ public class Main {
                 new Rectangle2D.Double(100, 100, 600, 600));
         ExportUtils.writeAsSVG(jFreeChart, 1000, 1000, new File("export.svg"));
 */
+        }
     }
-}
