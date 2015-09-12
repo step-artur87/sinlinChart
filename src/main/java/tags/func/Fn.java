@@ -87,7 +87,7 @@ public class Fn extends AbstractTag implements Tag {
         return result;
     }
 
-    private Map<String, ArrayList<Double>> getArgs() {
+    public Map<String, ArrayList<Double>> getArgs() {
         Map<String, ArrayList<Double>> result = new HashMap<>();
         argsSet.forEach((a)
                 -> a.getNums().forEach((n)

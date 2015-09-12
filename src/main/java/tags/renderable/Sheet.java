@@ -9,6 +9,8 @@ import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamWriter;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created with IntelliJ IDEA.
@@ -38,16 +40,24 @@ public class Sheet extends AbstractRenderTag implements Tag {
                 + this.getClass() + ".");
     }
 
-    public ArrayList<Plot> getPlots() {
+    /*Map<String, <ArrayList<Plot>>*/
+    public Map<String, ArrayList<Plot>> getPlots() {
+        Map<String, ArrayList<Plot>> plotMap = new HashMap<>();
         ArrayList<Plot> plotArrayList = new ArrayList<>();
-        charts.forEach((c) -> {
-            plotArrayList.add(c.createPlot());
-        });
-        return plotArrayList;
+        if (fnSet.isEmpty()) {
+            plotArrayList.clear();
+            charts.forEach((c)->{
+                plotArrayList.add(c.createPlot());
+            });
+            plotMap.put("default", plotArrayList);
+        } else {
+
+        }
+        return plotMap;
     }
 
     @Override
-    public void writeXML(XMLStreamWriter xmlStreamWriter){
+    public void writeXML(XMLStreamWriter xmlStreamWriter) {
         try {
             xmlStreamWriter.writeStartElement(
                     this.getClass().getSimpleName());
