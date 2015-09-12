@@ -20,6 +20,11 @@ public class ChartSourceHandler extends DefaultHandler {
     private TagDeque tagDeque = TagDeque.getInstance();
 
     @Override
+    public void startDocument(){
+        tagDeque.clear();
+    }
+
+    @Override
     public void startElement(String uri,
                              String localName,
                              String qName,
