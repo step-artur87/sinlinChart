@@ -30,7 +30,8 @@ public class UtMap {
         return rows;
     }
 
-    public static int getMapArrayListsSize(Map<String, ArrayList<Double>> map) {
+    public static int getMapArrayListsSize(
+            Map<String, ArrayList<Double>> map) {
         IntStream intStream = map.values().stream().mapToInt((a) -> a.size());
         OptionalInt max = intStream.max();
         OptionalInt min = intStream.max();
@@ -48,10 +49,8 @@ public class UtMap {
 
         for (int i = 0; i < h; i++) {
             result.add(new ArrayList<>());
-        }
-        for (int i = 0; i < w; i++) {
-            for (int j = 0; j < h; j++) {
-                //result.
+            for (int j = 0; j < w; j++) {
+                result.get(i).add(data.get(j).get(i));
             }     
         }
         return result;
