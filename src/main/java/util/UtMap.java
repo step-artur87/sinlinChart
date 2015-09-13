@@ -20,7 +20,7 @@ public class UtMap {
                 = new HashMap<>();
         ArrayList<ArrayList<Double>> matrix = new ArrayList<>();
         ArrayList<ArrayList<Double>> transposed;
-        ArrayList<String>keys = getKeys(data);
+        ArrayList<String> keys = getKeys(data);
         StringBuffer stringBuffer;
         int n = getMapArrayListsSize(data);
         if (n > 0) {
@@ -30,7 +30,7 @@ public class UtMap {
             transposed = transpose(matrix);
             for (int i = 0; i < transposed.size(); i++) {
                 stringBuffer = new StringBuffer();
-                for (int j = 0; j < keys.size(); j++){
+                for (int j = 0; j < keys.size(); j++) {
                     stringBuffer
                             .append(keys.get(j))
                             .append(" = ")
@@ -74,7 +74,7 @@ public class UtMap {
     }
 
     public static ArrayList<String> getKeys(
-            Map<String, ?> map){
+            Map<String, ?> map) {
         ArrayList<String> keys = new ArrayList<>();
 
         map.forEach((s, a) -> {
@@ -83,5 +83,13 @@ public class UtMap {
         return keys;
     }
 
-    //todo oneRow
+    public static Map<String, Double> getRow(
+            Map<String, ArrayList<Double>> data,
+            int rowNumber) {
+        Map<String, Double> row = new HashMap<>();
+        for (String string : data.keySet()) {
+            row.put(string, data.get(string).get(rowNumber));
+        }
+        return row;
+    }
 }
