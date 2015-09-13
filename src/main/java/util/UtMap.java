@@ -20,14 +20,27 @@ public class UtMap {
                 = new HashMap<>();
         ArrayList<ArrayList<Double>> matrix = new ArrayList<>();
         ArrayList<ArrayList<Double>> transposed;
+        ArrayList<String> oldKeys = new ArrayList<>();
+        ArrayList<String> newKeys = new ArrayList<>();
+        StringBuffer stringBuffer;
         int n = getMapArrayListsSize(data);
         if (n > 0) {
             data.forEach((s, a) -> {
                 matrix.add(a);
+                oldKeys.add(s);
             });
             transposed = transpose(matrix);
             for (int i = 0; i < transposed.size(); i++) {
-
+                stringBuffer = new StringBuffer();
+                for (int j = 0; j < oldKeys.size(); j++){
+                    stringBuffer
+                            .append(oldKeys.get(j))
+                            .append(" = ")
+                            .append(transposed.get(i).get(j))
+                            .append(";");
+                }
+                newKeys.add(stringBuffer.toString());
+                rows.put(stringBuffer.toString(), transposed.get(i));
             }
         } else {
             //todo
@@ -39,9 +52,11 @@ public class UtMap {
             Map<String, ArrayList<Double>> map) {
         IntStream intStream = map.values().stream().mapToInt((a) -> a.size());
         OptionalInt max = intStream.max();
-        OptionalInt min = intStream.max();
+        //fixme
+        intStream = map.values().stream().mapToInt((a) -> a.size());
+        OptionalInt min = intStream.min();
         if (!max.isPresent() && !min.isPresent()) return 0;
-        if (max == min) return max.getAsInt();
+        if (max.equals(min)) return max.getAsInt();
         return -1;
     }
 
