@@ -105,16 +105,9 @@ public class Fn extends AbstractTag implements Tag {
         return result;
     }
 
-    private static ArrayList<Double> filter(ArrayList<Double> places,
-                                            ArrayList<Double> values,
-                                            double value) {
-        ArrayList<Double> result = new ArrayList<>();
-        for (int i = 0; i < places.size(); i++) {
-            if (places.get(i) == value) {
-                result.add(values.get(i));
-            }
-        }
-        return result;
+    public Map<String, Double> getResRow(Map<String, Double> constValues){
+        //m.b. return Map<String, ArrayList<Double>>
+        return null;//todo
     }
 
     @Override
