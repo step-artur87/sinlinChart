@@ -44,17 +44,19 @@ public class Main {
         graphics = (Graphics2D) applicationFrame.getGraphics();
         Map<String, ArrayList<Plot>> plotMap = sheet.getPlots();
 
-        plotMap.forEach((s, a) -> {
-            for (int i = 0; i < a.size(); i++) {
-                a.get(i).setBackgroundAlpha(0);
-                a.get(i).draw(graphics, new Rectangle2D.Double(
+        int w = 0;
+        for (String string : plotMap.keySet()) {
+            for (int i = 0; i < plotMap.get(string).size(); i++) {
+                plotMap.get(string).get(i).setBackgroundAlpha(0);
+                plotMap.get(string).get(i).draw(graphics, new Rectangle2D.Double(
                         i * 100,
-                        i * 100,
-                        600,
-                        600),
+                        w * 100,
+                        100,
+                        100),
                         null, null, null);
             }
-        });
+            w++;
+        }
 
 
 /*

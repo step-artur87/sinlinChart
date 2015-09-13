@@ -12,6 +12,8 @@ import tags.func.Fn;
 import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamWriter;
 import java.util.ArrayDeque;
+import java.util.ArrayList;
+import java.util.Map;
 
 /**
  * Created with IntelliJ IDEA.
@@ -61,6 +63,14 @@ public class Chart extends AbstractRenderTag implements Tag {
 
     public Plot createPlot() {
         return new XYPlot(
+                fnSet.peek().createXYDataset(),
+                new NumberAxis("x"),
+                new NumberAxis("y"),
+                new XYLineAndShapeRendererExt(owned));
+    }
+
+    public Plot createPlot(Map<String, Double> constValues) {
+        return new XYPlot(//todo
                 fnSet.peek().createXYDataset(),
                 new NumberAxis("x"),
                 new NumberAxis("y"),

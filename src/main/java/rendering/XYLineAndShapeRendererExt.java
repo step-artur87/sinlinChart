@@ -15,7 +15,7 @@ import java.util.Map;
  * Date: 8/28/15
  * Time: 9:41 PM
  */
-public class XYLineAndShapeRendererExt
+public class XYLineAndShapeRendererExt//todo test it for svg
         extends XYLineAndShapeRenderer {
     private ArrayDeque<RenderInstruction> owned;
     private Map<String, RenderInstruction> rimap
