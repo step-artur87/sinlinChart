@@ -7,10 +7,7 @@ import tags.func.Fn;
 
 import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamWriter;
-import java.util.ArrayDeque;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created with IntelliJ IDEA.
@@ -46,9 +43,11 @@ public class Sheet extends AbstractRenderTag implements Tag {
         ArrayList<Plot> plotArrayList = new ArrayList<>();
         if (fnSet.isEmpty()) {
             plotArrayList.clear();
-            charts.forEach((c)->{
-                plotArrayList.add(c.createPlot());
-            });
+            for (Chart chart : charts) {
+            //todo delete arrayLists, when it can
+                plotArrayList.add(chart.createPlot());
+            }
+
             plotMap.put("default", plotArrayList);
         } else {
 
