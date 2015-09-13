@@ -1,8 +1,8 @@
 package util;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 /**
  * Created with IntelliJ IDEA.
@@ -16,16 +16,15 @@ public class UtMap {
             Map<String, ArrayList<Double>> data){
         Map<String, ArrayList<Double>> rows
                 = new HashMap<>();
-        StringBuffer stringBuffer;
-        int n = data.get(
-                data.keySet().iterator().next()).size();
-        for (int i = 0; i < n; i++) {
-            stringBuffer = new StringBuffer();
-            data.forEach((s, a)->{
-                stringBuffer.append(s + )
-            });
-            rows.put()
-        }
 
+    }
+
+    public static int getMapArrayListsSize(Map<String, ArrayList<Double>>map){
+        IntStream intStream = map.values().stream().mapToInt((a)-> a.size());
+        OptionalInt max = intStream.max();
+        OptionalInt min = intStream.max();
+        if (!max.isPresent() && !min.isPresent()) return 0;
+        if (max == min) return max.getAsInt();
+        return -1;
     }
 }
