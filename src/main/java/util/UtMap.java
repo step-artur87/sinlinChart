@@ -18,10 +18,15 @@ public class UtMap {
             Map<String, ArrayList<Double>> data) {
         Map<String, ArrayList<Double>> rows
                 = new HashMap<>();
-
+        ArrayList<ArrayList<Double>> matrix = new ArrayList<>();
+        ArrayList<ArrayList<Double>> transposed;
         int n = getMapArrayListsSize(data);
         if (n > 0) {
-            for (int i = 0; i < n; i++) {
+            data.forEach((s, a) -> {
+                matrix.add(a);
+            });
+            transposed = transpose(matrix);
+            for (int i = 0; i < transposed.size(); i++) {
 
             }
         } else {
@@ -42,7 +47,7 @@ public class UtMap {
 
     //without checking
     public static ArrayList<ArrayList<Double>> transpose(
-            ArrayList<ArrayList<Double>> data){
+            ArrayList<ArrayList<Double>> data) {
         ArrayList<ArrayList<Double>> result = new ArrayList<>();
         int w = data.size();
         int h = data.get(0).size();
@@ -51,8 +56,10 @@ public class UtMap {
             result.add(new ArrayList<>());
             for (int j = 0; j < w; j++) {
                 result.get(i).add(data.get(j).get(i));
-            }     
+            }
         }
         return result;
     }
+
+    //todo oneRow
 }
