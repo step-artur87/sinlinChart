@@ -109,13 +109,29 @@ public class Fn extends AbstractTag implements Tag {
         return resMap;
     }
 
+    /**
+     *
+     * @param constVal
+     * @return Fn without sets, but with maps
+     */
     public Fn getFlatedInstance(Map<String, Double>constVal){
         Fn result = new Fn();
         boolean satisfy;
 
+        //set maps
+        getConst();
+        getArgs();
+        getRes();
+
+        //copy maps with empty arrayLists to result
         for (String string : getArgs().keySet()){
-            //result.addChildTag();
+            result.argsMap.put(string, new ArrayList<>());
         }
+        for (String string : getRes().keySet()){
+            result.resMap.put(string, new ArrayList<>());
+        }
+
+        //if row satisfied, then copy to result
         for (int i = 0; i < this.getRowCount(); i++) {
             satisfy = true;
             for (String string : getConst().keySet()){
@@ -127,8 +143,14 @@ public class Fn extends AbstractTag implements Tag {
             }
             if (satisfy){
                 for (String string : getArgs().keySet()){
-                    //result.getArgs().get(string).add();
+                    result.getArgs().get(string).add(
+                            getArgs().get(string).get(i));
                 }
+                for (String string : getRes().keySet()){
+                    result.getRes().get(string).add(
+                            getRes().get(string).get(i));
+                }
+
             }
         }
         return result;
