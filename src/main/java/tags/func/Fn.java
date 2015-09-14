@@ -39,8 +39,8 @@ public class Fn extends AbstractTag implements Tag {
         //todo other Datasets
         DefaultXYDataset xyDataset
                 = new DefaultXYDataset();
-        Set<String> xKey = getArgs().keySet();
-        Set<String> yKey = getRes().keySet();
+        Set<String> xKey = argsMap.keySet();
+        Set<String> yKey = resMap.keySet();
         Map<String, Num> xIds = argsSet.peek().getIds();
         Map<String, Num> yIds = resSet.peek().getIds();
 
@@ -48,8 +48,8 @@ public class Fn extends AbstractTag implements Tag {
         if (xIds.isEmpty() && yIds.isEmpty()) {
             yKey.forEach((k) -> {
                 xyDataset.addSeries(k, UtArray.arraysTo2D(
-                        getArgs().get(xKey.toArray()[0]),
-                        getRes().get(k)));
+                        argsMap.get(xKey.toArray()[0]),
+                        resMap.get(k)));
             });
         } else
         //ids same in args and res
@@ -92,33 +92,6 @@ public class Fn extends AbstractTag implements Tag {
                 + this.getClass() + ".");
     }
 
-    private Map<String, ArrayList<Double>> getConst() {
-        constSet.forEach((a)
-                -> a.getNums().forEach((n)
-                -> {
-            constMap.put(n.getText(), n.getValues());
-        }));
-        return constMap;
-    }
-
-    private Map<String, ArrayList<Double>> getArgs() {
-        Map<String, ArrayList<Double>> result = new HashMap<>();
-        argsSet.forEach((a)
-                -> a.getNums().forEach((n)
-                -> {
-            argsMap.put(n.getText(), n.getValues());
-        }));
-        return argsMap;
-    }
-
-    private Map<String, ArrayList<Double>> getRes() {
-        Map<String, ArrayList<Double>> result = new HashMap<>();
-        resSet.forEach((a) -> a.getNums().forEach((n) -> {
-            resMap.put(n.getText(), n.getValues());
-        }));
-        return resMap;
-    }
-
     /**
      * @param constVal
      * @return Fn without sets, but with maps
@@ -130,31 +103,31 @@ public class Fn extends AbstractTag implements Tag {
         setMaps();
 
         //copy maps with empty arrayLists to result
-        for (String string : getArgs().keySet()) {
+        for (String string : argsMap.keySet()) {
             result.argsMap.put(string, new ArrayList<>());
         }
-        for (String string : getRes().keySet()) {
+        for (String string : resMap.keySet()) {
             result.resMap.put(string, new ArrayList<>());
         }
 
         //if row satisfied, then copy to result
         for (int i = 0; i < this.getRowCount(); i++) {
             satisfy = true;
-            for (String string : getConst().keySet()) {
+            for (String string : constMap.keySet()) {
                 if (constVal.containsKey(string)
                         && !constVal.get(string).equals(
-                        getConst().get(string).get(i))) {
+                        constMap.get(string).get(i))) {
                     satisfy = false;
                 }
             }
             if (satisfy) {
-                for (String string : getArgs().keySet()) {
-                    result.getArgs().get(string).add(
-                            getArgs().get(string).get(i));
+                for (String string : argsMap.keySet()) {
+                    result.argsMap.get(string).add(
+                            argsMap.get(string).get(i));
                 }
-                for (String string : getRes().keySet()) {
-                    result.getRes().get(string).add(
-                            getRes().get(string).get(i));
+                for (String string : resMap.keySet()) {
+                    result.resMap.get(string).add(
+                            resMap.get(string).get(i));
                 }
 
             }
@@ -167,13 +140,6 @@ public class Fn extends AbstractTag implements Tag {
         map.putAll(argsMap);
         map.putAll(resMap);
         return UtMap.getRowsAL(map);
-    }
-
-    //todo check one time
-    private void setMaps() {
-        getConst();
-        getArgs();
-        getRes();
     }
 
     public int getRowCount() {
@@ -206,5 +172,24 @@ public class Fn extends AbstractTag implements Tag {
         } catch (XMLStreamException e) {
             e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
         }
+    }
+
+    //todo check one time
+    private void setMaps() {
+        constSet.forEach((a)
+                -> a.getNums().forEach((n)
+                -> {
+            constMap.put(n.getText(), n.getValues());
+        }));
+        Map<String, ArrayList<Double>> result = new HashMap<>();
+        argsSet.forEach((a)
+                -> a.getNums().forEach((n)
+                -> {
+            argsMap.put(n.getText(), n.getValues());
+        }));
+        Map<String, ArrayList<Double>> result1 = new HashMap<>();
+        resSet.forEach((a) -> a.getNums().forEach((n) -> {
+            resMap.put(n.getText(), n.getValues());
+        }));
     }
 }
