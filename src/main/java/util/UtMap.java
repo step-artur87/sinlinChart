@@ -45,6 +45,33 @@ public class UtMap {
         return rows;
     }
 
+    public static ArrayList<Map<String, Double>> getRowsAL(
+            Map<String, ArrayList<Double>> data) {
+        ArrayList<Map<String, Double>> rows
+                = new ArrayList<>();
+        ArrayList<ArrayList<Double>> matrix = new ArrayList<>();
+        ArrayList<ArrayList<Double>> transposed;
+        Map<String, Double> tmpMap;
+        ArrayList<String> keys = getKeys(data);
+        int n = getMapArrayListsSize(data);
+        if (n > 0) {
+            data.forEach((s, a) -> {
+                matrix.add(a);
+            });
+            transposed = transpose(matrix);
+            for (int i = 0; i < transposed.size(); i++) {
+                tmpMap = new HashMap<>();
+                for (int j = 0; j < keys.size(); j++) {
+                    tmpMap.put(keys.get(j), transposed.get(i).get(j));
+                }
+                rows.add(tmpMap);
+            }
+        } else {
+            //todo
+        }
+        return rows;
+    }
+
     public static int getMapArrayListsSize(
             Map<String, ArrayList<Double>> map) {
         IntStream intStream = map.values().stream().mapToInt((a) -> a.size());
