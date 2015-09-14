@@ -22,6 +22,10 @@ public class Fn extends AbstractTag implements Tag {
     private ArrayDeque<Const> constSet = new ArrayDeque<>();//fixme kostyl
     private ArrayDeque<Args> argsSet = new ArrayDeque<>();//fixme kostyl
     private ArrayDeque<Res> resSet = new ArrayDeque<>();//fixme kostyl
+    private Map<String, ArrayList<Double>> constMap = new HashMap<>();
+    private Map<String, ArrayList<Double>> argsMap = new HashMap<>();
+    private Map<String, ArrayList<Double>> resMap = new HashMap<>();
+
 
     /**
      * Creates XYDataset from all data of this
@@ -78,13 +82,13 @@ public class Fn extends AbstractTag implements Tag {
     }
 
     private Map<String, ArrayList<Double>> getConst() {
-        Map<String, ArrayList<Double>> result = new HashMap<>();
+        //todo it and other copy set one time
         constSet.forEach((a)
                 -> a.getNums().forEach((n)
                 -> {
-            result.put(n.getText(), n.getValues());
+            constMap.put(n.getText(), n.getValues());
         }));
-        return result;
+        return constMap;
     }
 
     public Map<String, ArrayList<Double>> getArgs() {
@@ -92,17 +96,17 @@ public class Fn extends AbstractTag implements Tag {
         argsSet.forEach((a)
                 -> a.getNums().forEach((n)
                 -> {
-            result.put(n.getText(), n.getValues());
+            argsMap.put(n.getText(), n.getValues());
         }));
-        return result;
+        return argsMap;
     }
 
     private Map<String, ArrayList<Double>> getRes() {
         Map<String, ArrayList<Double>> result = new HashMap<>();
         resSet.forEach((a) -> a.getNums().forEach((n) -> {
-            result.put(n.getText(), n.getValues());
+            resMap.put(n.getText(), n.getValues());
         }));
-        return result;
+        return resMap;
     }
 
     public Fn getFlatedInstance(Map<String, Double>constVal){
