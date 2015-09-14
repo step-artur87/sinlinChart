@@ -105,9 +105,33 @@ public class Fn extends AbstractTag implements Tag {
         return result;
     }
 
-    public Map<String, Double> getResRow(Map<String, Double> constValues){
-        //m.b. return Map<String, ArrayList<Double>>
-        return null;//todo
+    public Fn getFlatedInstance(Map<String, Double>constVal){
+        Fn result = new Fn();
+        boolean satisfy;
+
+        for (String string : getArgs().keySet()){
+            //result.addChildTag();
+        }
+        for (int i = 0; i < this.getRowCount(); i++) {
+            satisfy = true;
+            for (String string : getConst().keySet()){
+                if (constVal.containsKey(string)
+                        && !constVal.get(string).equals(
+                        getConst().get(string).get(i))) {
+                    satisfy = false;
+                }
+            }
+            if (satisfy){
+                for (String string : getArgs().keySet()){
+                    //result.getArgs().get(string).add();
+                }
+            }
+        }
+        return result;
+    }
+
+    private int getRowCount() {
+        return 0; //todo
     }
 
     @Override
