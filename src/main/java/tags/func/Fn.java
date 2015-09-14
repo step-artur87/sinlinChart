@@ -19,6 +19,7 @@ import java.util.*;
  * Time: 8:05 PM
  */
 public class Fn extends AbstractTag implements Tag {
+    //todo check arg,res key is distinct
     public static final String DEFAULT_SERIES_NAME = "xy";
     private ArrayDeque<Const> constSet = new ArrayDeque<>();//fixme kostyl
     private ArrayDeque<Args> argsSet = new ArrayDeque<>();//fixme kostyl
@@ -83,7 +84,6 @@ public class Fn extends AbstractTag implements Tag {
     }
 
     private Map<String, ArrayList<Double>> getConst() {
-        //todo it and other copy set one time
         constSet.forEach((a)
                 -> a.getNums().forEach((n)
                 -> {
@@ -155,9 +155,10 @@ public class Fn extends AbstractTag implements Tag {
     }
 
     public ArrayList<Map<String,Double>> getArgsAndResRows(){
-        ArrayList<Map<String,Double>> result = new ArrayList<>();
-
-        return result;
+        Map<String, ArrayList<Double>> map = new HashMap<>();
+        map.putAll(argsMap);
+        map.putAll(resMap);
+        return UtMap.getRowsAL(map);
     }
 
     //todo check one time
