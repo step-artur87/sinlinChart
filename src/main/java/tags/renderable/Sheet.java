@@ -4,11 +4,14 @@ import org.jfree.chart.plot.Plot;
 import tags.Tag;
 import tags.TagException;
 import tags.func.Fn;
+import util.UtMap;
 
 import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamWriter;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created with IntelliJ IDEA.
@@ -38,16 +41,38 @@ public class Sheet extends AbstractRenderTag implements Tag {
                 + this.getClass() + ".");
     }
 
-    public ArrayList<Plot> getPlots() {
+    /*Map<String, <ArrayList<Plot>>*/
+    public Map<String, ArrayList<Plot>> getPlots() {
+        Map<String, ArrayList<Plot>> plotMap = new HashMap<>();
         ArrayList<Plot> plotArrayList = new ArrayList<>();
-        charts.forEach((c) -> {
-            plotArrayList.add(c.createPlot());
-        });
-        return plotArrayList;
+        ArrayList<String> rowKeys;
+        Map<String, Double> row;
+
+        if (fnSet.isEmpty()) {
+            plotArrayList.clear();
+            for (Chart chart : charts) {
+                //todo delete arrayLists, when it can
+                plotArrayList.add(chart.createPlot());
+            }
+
+            plotMap.put("default", plotArrayList);
+        } else {
+            rowKeys = UtMap.getKeys(UtMap.getRows(fnSet.getFirst().getArgs()));
+            for (int i = 0; i < rowKeys.size(); i++) {
+                plotArrayList.clear();
+                row = UtMap.getRow(fnSet.getFirst().getArgs(),
+                        i);
+                for (Chart chart : charts) {
+                    plotArrayList.add(chart.createPlot(row));
+                }
+                plotMap.put(rowKeys.get(i), plotArrayList);
+            }
+        }
+        return plotMap;//todo set legend
     }
 
     @Override
-    public void writeXML(XMLStreamWriter xmlStreamWriter){
+    public void writeXML(XMLStreamWriter xmlStreamWriter) {
         try {
             xmlStreamWriter.writeStartElement(
                     this.getClass().getSimpleName());

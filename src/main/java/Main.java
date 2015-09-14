@@ -5,13 +5,13 @@ import tags.TagDeque;
 import tags.renderable.Sheet;
 import xml.ChartSourceHandler;
 import xml.DataSourceHandler;
-import xml.Output;
 import xml.SaxParsing;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
+import java.util.Map;
 
 /**
  * Created with IntelliJ IDEA.
@@ -42,18 +42,21 @@ public class Main {
         applicationFrame.setVisible(true);
 
         graphics = (Graphics2D) applicationFrame.getGraphics();
-        ArrayList<Plot> plots = sheet.getPlots();
+        Map<String, ArrayList<Plot>> plotMap = sheet.getPlots();
 
-        for (int i = 0; i < plots.size(); i++) {
-            plots.get(i).setBackgroundAlpha(0);
-            plots.get(i).draw(graphics, new Rectangle2D.Double(
-                    i * 100,
-                    i * 100,
-                    600,
-                    600),
-                    null, null, null);
+        int w = 0;
+        for (String string : plotMap.keySet()) {
+            for (int i = 0; i < plotMap.get(string).size(); i++) {
+                plotMap.get(string).get(i).setBackgroundAlpha(0);
+                plotMap.get(string).get(i).draw(graphics, new Rectangle2D.Double(
+                        i * 100,
+                        w * 100,
+                        100,
+                        100),
+                        null, null, null);
+            }
+            w++;
         }
-
 
 
 /*
@@ -62,5 +65,5 @@ public class Main {
                 new Rectangle2D.Double(100, 100, 600, 600));
         ExportUtils.writeAsSVG(jFreeChart, 1000, 1000, new File("export.svg"));
 */
-        }
     }
+}
