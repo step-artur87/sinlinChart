@@ -154,6 +154,12 @@ public class Fn extends AbstractTag implements Tag {
         return result;
     }
 
+    public ArrayList<Map<String,Double>> getArgsAndResRows(){
+        ArrayList<Map<String,Double>> result = new ArrayList<>();
+
+        return result;
+    }
+
     //todo check one time
     private void setMaps() {
         getConst();
