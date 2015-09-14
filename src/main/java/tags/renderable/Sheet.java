@@ -41,7 +41,6 @@ public class Sheet extends AbstractRenderTag implements Tag {
                 + this.getClass() + ".");
     }
 
-    /*Map<String, <ArrayList<Plot>>*/
     public Map<String, ArrayList<Plot>> getPlots() {
         Map<String, ArrayList<Plot>> plotMap = new HashMap<>();
         ArrayList<Plot> plotArrayList = new ArrayList<>();
@@ -57,15 +56,17 @@ public class Sheet extends AbstractRenderTag implements Tag {
 
             plotMap.put("default", plotArrayList);
         } else {
-            rowKeys = UtMap.getKeys(UtMap.getRows(fnSet.getFirst().getArgs()));
-            for (int i = 0; i < rowKeys.size(); i++) {
+            for (int i = 0;
+                 i < fnSet.getFirst().getRowCount();
+                 i++) {
                 plotArrayList.clear();
-                row = UtMap.getRow(fnSet.getFirst().getArgs(),
-                        i);
                 for (Chart chart : charts) {
-                    plotArrayList.add(chart.createPlot(row));
+                    plotArrayList.add(chart.createPlot(
+                            fnSet.getFirst().getArgsAndResRows()
+                                    .get(i)));
                 }
-                plotMap.put(rowKeys.get(i), plotArrayList);
+                plotMap.put(UtMap.getString(fnSet.getFirst().getArgsAndResRows()
+                        .get(i)), plotArrayList);
             }
         }
         return plotMap;//todo set legend

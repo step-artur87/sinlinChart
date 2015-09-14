@@ -92,7 +92,7 @@ public class Fn extends AbstractTag implements Tag {
         return constMap;
     }
 
-    public Map<String, ArrayList<Double>> getArgs() {
+    private Map<String, ArrayList<Double>> getArgs() {
         Map<String, ArrayList<Double>> result = new HashMap<>();
         argsSet.forEach((a)
                 -> a.getNums().forEach((n)
@@ -111,40 +111,39 @@ public class Fn extends AbstractTag implements Tag {
     }
 
     /**
-     *
      * @param constVal
      * @return Fn without sets, but with maps
      */
-    public Fn getFlatedInstance(Map<String, Double>constVal){
+    public Fn getFlatedInstance(Map<String, Double> constVal) {
         Fn result = new Fn();
         boolean satisfy;
 
         setMaps();
 
         //copy maps with empty arrayLists to result
-        for (String string : getArgs().keySet()){
+        for (String string : getArgs().keySet()) {
             result.argsMap.put(string, new ArrayList<>());
         }
-        for (String string : getRes().keySet()){
+        for (String string : getRes().keySet()) {
             result.resMap.put(string, new ArrayList<>());
         }
 
         //if row satisfied, then copy to result
         for (int i = 0; i < this.getRowCount(); i++) {
             satisfy = true;
-            for (String string : getConst().keySet()){
+            for (String string : getConst().keySet()) {
                 if (constVal.containsKey(string)
                         && !constVal.get(string).equals(
                         getConst().get(string).get(i))) {
                     satisfy = false;
                 }
             }
-            if (satisfy){
-                for (String string : getArgs().keySet()){
+            if (satisfy) {
+                for (String string : getArgs().keySet()) {
                     result.getArgs().get(string).add(
                             getArgs().get(string).get(i));
                 }
-                for (String string : getRes().keySet()){
+                for (String string : getRes().keySet()) {
                     result.getRes().get(string).add(
                             getRes().get(string).get(i));
                 }
@@ -154,7 +153,7 @@ public class Fn extends AbstractTag implements Tag {
         return result;
     }
 
-    public ArrayList<Map<String,Double>> getArgsAndResRows(){
+    public ArrayList<Map<String, Double>> getArgsAndResRows() {
         Map<String, ArrayList<Double>> map = new HashMap<>();
         map.putAll(argsMap);
         map.putAll(resMap);
@@ -168,15 +167,22 @@ public class Fn extends AbstractTag implements Tag {
         getRes();
     }
 
-    private int getRowCount() {
+    public int getRowCount() {
         setMaps();
+        ArrayList<Integer> counts = new ArrayList<>();
         int c = UtMap.getMapArrayListsSize(constMap);
         int a = UtMap.getMapArrayListsSize(argsMap);
         int r = UtMap.getMapArrayListsSize(resMap);
-        if (c == a && c == r){
-            return c;
+        if (c > 0) counts.add(c);
+        if (a > 0) counts.add(a);
+        if (r > 0) counts.add(r);
+        if (counts.isEmpty()) {
+            return 0;
         }
-        return -1;
+        if (counts.stream().distinct().count() > 1) {
+            return -1;
+        }
+        return counts.get(0);
     }
 
     @Override
