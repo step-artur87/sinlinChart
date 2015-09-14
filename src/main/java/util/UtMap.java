@@ -14,37 +14,6 @@ import java.util.stream.IntStream;
  * To change this template use File | Settings | File Templates.
  */
 public class UtMap {
-    public static Map<String, ArrayList<Double>> getRows(
-            Map<String, ArrayList<Double>> data) {
-        Map<String, ArrayList<Double>> rows
-                = new HashMap<>();
-        ArrayList<ArrayList<Double>> matrix = new ArrayList<>();
-        ArrayList<ArrayList<Double>> transposed;
-        ArrayList<String> keys = getKeys(data);
-        StringBuffer stringBuffer;
-        int n = getMapArrayListsSize(data);
-        if (n > 0) {
-            data.forEach((s, a) -> {
-                matrix.add(a);
-            });
-            transposed = transpose(matrix);
-            for (int i = 0; i < transposed.size(); i++) {
-                stringBuffer = new StringBuffer();
-                for (int j = 0; j < keys.size(); j++) {
-                    stringBuffer
-                            .append(keys.get(j))
-                            .append(" = ")
-                            .append(transposed.get(i).get(j))
-                            .append(";");
-                }
-                rows.put(stringBuffer.toString(), transposed.get(i));
-            }
-        } else {
-            //todo
-        }
-        return rows;
-    }
-
     public static ArrayList<Map<String, Double>> getRowsAL(
             Map<String, ArrayList<Double>> data) {
         ArrayList<Map<String, Double>> rows
@@ -108,16 +77,6 @@ public class UtMap {
             keys.add(s);
         });
         return keys;
-    }
-
-    public static Map<String, Double> getRow(
-            Map<String, ArrayList<Double>> data,
-            int rowNumber) {
-        Map<String, Double> row = new HashMap<>();
-        for (String string : data.keySet()) {
-            row.put(string, data.get(string).get(rowNumber));
-        }
-        return row;
     }
 
     public static String getString(
