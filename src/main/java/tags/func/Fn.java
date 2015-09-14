@@ -6,6 +6,7 @@ import tags.AbstractTag;
 import tags.Tag;
 import tags.TagException;
 import util.UtArray;
+import util.UtMap;
 
 import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamWriter;
@@ -118,10 +119,7 @@ public class Fn extends AbstractTag implements Tag {
         Fn result = new Fn();
         boolean satisfy;
 
-        //set maps
-        getConst();
-        getArgs();
-        getRes();
+        setMaps();
 
         //copy maps with empty arrayLists to result
         for (String string : getArgs().keySet()){
@@ -156,8 +154,22 @@ public class Fn extends AbstractTag implements Tag {
         return result;
     }
 
+    //todo check one time
+    private void setMaps() {
+        getConst();
+        getArgs();
+        getRes();
+    }
+
     private int getRowCount() {
-        return 0; //todo
+        setMaps();
+        int c = UtMap.getMapArrayListsSize(constMap);
+        int a = UtMap.getMapArrayListsSize(argsMap);
+        int r = UtMap.getMapArrayListsSize(resMap);
+        if (c == a && c == r){
+            return c;
+        }
+        return -1;
     }
 
     @Override
