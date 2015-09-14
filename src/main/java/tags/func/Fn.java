@@ -34,7 +34,7 @@ public class Fn extends AbstractTag implements Tag {
      *
      * @return XYDataset
      */
-    public XYDataset createXYDataset() {
+    public XYDataset createXYDatasetId() {
         //OR many with id OR one without, no that and that
         //todo other Datasets
         DefaultXYDataset xyDataset
@@ -68,6 +68,15 @@ public class Fn extends AbstractTag implements Tag {
                 }
             }
         }
+        return xyDataset;
+    }
+
+    public XYDataset createXYDataset(){
+        DefaultXYDataset xyDataset
+                = new DefaultXYDataset();
+        xyDataset.addSeries("def", UtArray.arraysTo2D(
+                argsMap.get("x"),
+                resMap.get("y")));
         return xyDataset;
     }
 

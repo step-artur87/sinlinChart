@@ -8,6 +8,7 @@ import rendering.XYLineAndShapeRendererExt;
 import tags.Tag;
 import tags.TagException;
 import tags.func.Fn;
+import util.UtMap;
 
 import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamWriter;
@@ -71,7 +72,7 @@ public class Chart extends AbstractRenderTag implements Tag {
 
     public Plot createPlot(Map<String, Double> constValues) {
         return new XYPlot(//todo
-                fnSet.peek().createXYDataset(),
+                fnSet.peek().getFlatedInstance(constValues).createXYDataset(),
                 new NumberAxis("x"),
                 new NumberAxis("y"),
                 new XYLineAndShapeRendererExt(owned));

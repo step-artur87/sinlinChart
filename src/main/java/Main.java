@@ -49,8 +49,8 @@ public class Main {
             for (int i = 0; i < plotMap.get(string).size(); i++) {
                 plotMap.get(string).get(i).setBackgroundAlpha(0);
                 plotMap.get(string).get(i).draw(graphics, new Rectangle2D.Double(
-                        i * 100,
-                        w * 100,
+                        i * 100 + 100,
+                        w * 100 + 100,
                         100,
                         100),
                         null, null, null);

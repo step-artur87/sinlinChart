@@ -43,12 +43,12 @@ public class Sheet extends AbstractRenderTag implements Tag {
 
     public Map<String, ArrayList<Plot>> getPlots() {
         Map<String, ArrayList<Plot>> plotMap = new HashMap<>();
-        ArrayList<Plot> plotArrayList = new ArrayList<>();
+        ArrayList<Plot> plotArrayList;
         ArrayList<String> rowKeys;
         Map<String, Double> row;
 
         if (fnSet.isEmpty()) {
-            plotArrayList.clear();
+            plotArrayList = new ArrayList<>();
             for (Chart chart : charts) {
                 //todo delete arrayLists, when it can
                 plotArrayList.add(chart.createPlot());
@@ -59,7 +59,7 @@ public class Sheet extends AbstractRenderTag implements Tag {
             for (int i = 0;
                  i < fnSet.getFirst().getRowCount();
                  i++) {
-                plotArrayList.clear();
+                plotArrayList = new ArrayList<>();
                 for (Chart chart : charts) {
                     plotArrayList.add(chart.createPlot(
                             fnSet.getFirst().getArgsAndResRows()
