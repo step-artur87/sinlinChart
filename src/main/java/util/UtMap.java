@@ -119,4 +119,16 @@ public class UtMap {
         }
         return row;
     }
+
+    public static String getString(
+            Map<String, Double> row) {
+        StringBuilder stringBuilder = new StringBuilder();
+        for (String string : row.keySet()) {
+            stringBuilder.append(string)
+                    .append(" = ")
+                    .append(row.get(string))
+                    .append(";");
+        }
+        return stringBuilder.toString();
+    }
 }
