@@ -52,9 +52,4 @@ public abstract class AbstractTag implements Tag {
         }
         return false;
     }
-
-    @Override
-    public void writeXML(XMLStreamWriter xmlStreamWriter){
-        //todo delete
-    }
 }
