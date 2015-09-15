@@ -1,6 +1,8 @@
-package tags;
+package util;
 
 import org.xml.sax.Attributes;
+import tags.Tag;
+import tags.TagException;
 import tags.func.*;
 import tags.renderable.Chart;
 import tags.renderable.Element;
