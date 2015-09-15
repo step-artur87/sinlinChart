@@ -54,7 +54,7 @@ public class TagBuilder {
                     e.printStackTrace();
                 }
         }
-        if (tag != null) {
+        if (tag != null && attributes != null) {
             tag.setAttributes(attributes);
         }
         return tag;
