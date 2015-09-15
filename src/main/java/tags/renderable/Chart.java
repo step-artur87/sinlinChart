@@ -3,6 +3,7 @@ package tags.renderable;
 import org.jfree.chart.axis.NumberAxis;
 import org.jfree.chart.plot.Plot;
 import org.jfree.chart.plot.XYPlot;
+import org.xml.sax.Attributes;
 import rendering.RenderInstruction;
 import rendering.XYLineAndShapeRendererExt;
 import tags.Tag;
@@ -27,6 +28,7 @@ public class Chart extends AbstractRenderTag implements Tag {
     private ArrayDeque<Element> elements = new ArrayDeque<>();
     private ArrayDeque<Prop> props = new ArrayDeque<>();
     private ArrayDeque<RenderInstruction> owned = new ArrayDeque<>();
+    private String type;
 
     {
         /*add to this.rio all ArrayDeques,
@@ -76,6 +78,14 @@ public class Chart extends AbstractRenderTag implements Tag {
                 new NumberAxis("x"),
                 new NumberAxis("y"),
                 new XYLineAndShapeRendererExt(owned));
+    }
+
+    @Override
+    public void setAttributes(Attributes attributes) {
+        super.setAttributes(attributes);
+        if (attributes.getValue(TYPE) != null){
+            type = attributes.getValue(TYPE);
+        }
     }
 
     @Override
