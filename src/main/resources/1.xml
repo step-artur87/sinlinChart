@@ -1,0 +1,33 @@
+<sheet>
+    <fn>
+        <args>
+            <num>c</num>
+        </args>
+    </fn>
+    <chart type = "XYPlot">
+        <fn>
+            <const>
+                <num>c</num>
+            </const>
+            <args>
+                <num>x</num>
+            </args>
+            <res>
+                <num>y</num>
+                <num>x</num>
+            </res>
+        </fn>
+<!--
+        <element>
+            <prop type="width">
+                <fn>
+                    <const>
+                        <num>x, w1</num>
+                    </const>
+                    <res><num>w2</num></res>
+                </fn>
+            </prop>
+        </element>
+-->
+    </chart>
+</sheet>
