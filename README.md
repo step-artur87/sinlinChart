@@ -1,5 +1,5 @@
 # sinlin
-Build charts bu xml data and  xml chart`s propertyes.
+Build charts by xml data and  xml chart`s properties.
 
 Libraries:
 net.mikera:vectorz:0.48.02
