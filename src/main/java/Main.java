@@ -22,8 +22,8 @@ import java.util.Map;
 public class Main {
     public static void main(String[] args) {
         Graphics2D graphics;
-        SaxParsing.parse(new DataSourceHandler(), "data.xml");
-        SaxParsing.parse(new ChartSourceHandler(), "1.xml");
+        SaxParsing.parse(new DataSourceHandler(), "src/main/resources/data.xml");
+        SaxParsing.parse(new ChartSourceHandler(), "src/main/resources/1.xml");
 
         /*create frame*/
         ApplicationFrame applicationFrame = new ApplicationFrame("tittle");
