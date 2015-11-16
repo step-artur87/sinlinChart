@@ -1,4 +1,5 @@
 # sinlin
+### Program is abandoned because it is too complicated for me.
 Build charts by xml data and  xml chart`s properties.
 
 Libraries:
